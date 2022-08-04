@@ -31,7 +31,7 @@
     padding-right: 0;
 }
 
-@media only screen and (max-width:739px){
+@media only screen and (max-width:539px){
     .c-0 {
         display: none;
     }
@@ -142,7 +142,7 @@
 }
 
 /* >= Tablet */
-@media (min-width: 740px) and (max-width:1023px){
+@media (min-width: 540px) and (max-width:1023px){
     .row {
         margin-left: -8px;
         margin-right: -8px;

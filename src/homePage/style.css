@@ -1,0 +1,38 @@
+:root{
+    --default_color:#662D91;
+    --blue_color:#CBB2ED;
+}
+.home-wrapper{
+    width: 100%;
+    margin-top: 4rem;
+}
+.home-container{
+    width: 100%;
+    padding: 0 2rem;
+}
+.narvar_container{
+    width: 100%;
+    height: 4rem;
+    border-bottom: 0.4rem solid var(--default_color);
+    display: flex;
+    align-items: center;
+}
+.narvar_container > p{
+    font-size: 1.7rem;
+    padding:0 1.5rem;
+}
+.narvar_container > p:first-child{
+    background-color: var(--default_color);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 1rem 1rem 0 0;
+    cursor: pointer;
+}
+.home_icon{
+    text-decoration: none;
+    color:white;
+}
+.narvar_container > p:nth-child(2){
+    border-right: 0.3rem solid var(--default_color);
+}
