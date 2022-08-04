@@ -10,7 +10,7 @@ const Header = () => {
                     <div className='col c-12 l-3 m-3'>
                         <div className='brand-wrapper'>
                             <Link className='brand-link-wrapper' to='/'>
-                                <img className='brand-image' src='https://res.cloudinary.com/dqbrxkux1/image/upload/v1659601530/Avatar/h0x0yor9vsryg9vb6to4.jpg' />
+                                <img  className='brand-image' src='https://res.cloudinary.com/dqbrxkux1/image/upload/v1659618849/Avatar/fvnriuqizgdtw4buecgb.png' />
                                 <p>Sttruyen.xyz</p>
                             </Link>
                         </div>
