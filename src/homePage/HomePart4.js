@@ -12,6 +12,18 @@ const HomePart4 = () => {
             <TopCard />
             <TopCard />
         </div>
+        <div className='narbar_top-favor'>
+            <p>Nổi Bật</p>
+        </div>
+        <div className='narbar_top-movies'>
+            <TopCard />
+            <TopCard />
+            <TopCard />
+            <TopCard />
+            <TopCard />
+            <TopCard />
+            <TopCard />
+        </div>
     </div>
   )
 }

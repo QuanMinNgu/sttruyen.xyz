@@ -117,3 +117,21 @@
     width: 100%;
     margin-top: 2rem;
 }
+.narbar_top-favor{
+    width: 100%;
+    margin-top: 5rem;
+    height: 4rem;
+    border-bottom: 0.3rem solid var(--default_color);
+}
+.narbar_top-favor > p{
+    margin:0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8rem;
+    background-color: var(--default_color);
+    color:white;
+    border-radius:1rem 1rem 0 0;
+    font-size: 1.3rem;
+}
