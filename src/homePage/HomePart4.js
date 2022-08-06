@@ -1,4 +1,5 @@
 import React from 'react'
+import TopCard from '~/card/topCard/TopCard'
 
 const HomePart4 = () => {
   return (
@@ -6,7 +7,11 @@ const HomePart4 = () => {
         <div className='narbar_top'>
             <p>Top</p>
         </div>
-        
+        <div className='narbar_top-movies'>
+            <TopCard />
+            <TopCard />
+            <TopCard />
+        </div>
     </div>
   )
 }

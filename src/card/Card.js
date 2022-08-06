@@ -55,15 +55,11 @@ const Card = () => {
                 <div className='card_image_content-icon'>
                     <div ref={heart} onClick={() => {
                         setLike(!like)
-                    }} title='Thêm danh sách yêu thích' className='icon_heart'>
+                    }} title='Yêu thích' className='icon_heart'>
                         <i className="fa-regular fa-heart"></i>
                     </div>
-                    <div
-                    onClick={() => {
-                        setLike(!like)
-                    }}
-                    title='Bình luận về phim' className='icon_heart'>
-                        <i className="fa-solid fa-message"></i>
+                    <div title='Thêm danh sách yêu thích' className='icon_plus'>
+                        <i class="fa-regular fa-plus"></i>
                     </div>
                 </div>
             </div>
