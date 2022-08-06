@@ -13,8 +13,37 @@ const HomePart8 = () => {
                     Home    
                 </Link>
             </p>
-            <p>Thể Loại</p>
-            <p>Sắp Xếp</p>
+            <p className='kinds_container'>
+                Thể Loại
+                <ul className='kinds_wrapp'>
+                    <li>
+                        <Link className='kinds_item' to='/'>Hoạt hình</Link>
+                    </li>
+                    <li>
+                        <Link className='kinds_item' to='/'>Hoạt hình</Link>
+                    </li>
+                    <li>
+                        <Link className='kinds_item' to='/'>Hoạt hình</Link>
+                    </li>
+                </ul>
+            </p>
+            <p className='kinds_container_sort'>
+                Sắp Xếp
+                <ul className='kinds_sort_wrapp'>
+                    <li>
+                        <Link className='kinds_item' to='/'>Mới Nhất</Link>
+                    </li>
+                    <li>
+                        <Link className='kinds_item' to='/'>Cũ Nhất</Link>
+                    </li>
+                    <li>
+                        <Link className='kinds_item' to='/'>Nhiều Lượt Xem</Link>
+                    </li>
+                    <li>
+                        <Link className='kinds_item' to='/'>Ít Lượt Xem</Link>
+                    </li>
+                </ul>
+            </p>
         </div>
         <div className='line'></div>
         <div className='narvar_card'>
