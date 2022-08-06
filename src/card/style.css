@@ -12,6 +12,7 @@
 .card_wrapper:hover{
     transform: scale(1.02);
 }
+
 @media only screen and (max-width:539px){
     .card_wrapper{
         height: 28rem;
@@ -150,7 +151,7 @@
     margin-bottom: 2rem;
 }
 .topCard_wrapp:hover{
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 .topCard_detail{
     flex:4;

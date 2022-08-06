@@ -111,6 +111,9 @@ const HomePart8 = () => {
                 <div className='col c-12 m-12 l-12'>
                     <Card />
                 </div>
+                <div className='col c-12 m-12 l-12'>
+                    <Card />
+                </div>
             </div>
         </div>
     </div>
