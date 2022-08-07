@@ -1,0 +1,129 @@
+.detail_wrapp{
+    width: 100%;
+    margin-top: 3rem;
+}
+@media only screen and (max-width:539px){
+    .detail_wrapp{
+        padding:0 3rem;
+    }
+}
+:root{
+    --default_color:#662D91;
+    --blue_color:#CBB2ED;
+}
+.detail_title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: 'Trirong', serif;
+    font-size: 1.7rem;
+    background: -webkit-linear-gradient(#ec2f4b, #009fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: scaleY(1.8);
+    text-transform: uppercase;
+}
+.detail_information{
+    width: 100%;
+    margin-top: 2rem;
+    height: 38rem;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 0 1rem 0.5rem var(--default_color);
+    border-radius: 1rem;
+}
+.detail_information-infor{
+    flex:1;
+    box-shadow: -3rem 0rem 20rem 3rem white;
+    z-index: 15;
+    padding:1rem 0;
+}
+.detail_information-image{
+    flex:1.5;
+    position: relative;
+}
+.detail_opacity{
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background-image: linear-gradient(270deg,white,transparent);
+}
+.detail_information-image > img{
+    width: 100%;
+    object-fit: cover;
+}
+.detail_information-infor-title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-family: 'Trirong', serif;
+    color:#7F7F7F;
+    height: 7rem;
+}
+.detail_information-infor-times{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color:#7F7F7F;
+    font-size: 1.3rem;
+}
+.detail_information-infor-user{
+    margin-top: 2rem;
+    color:#7F7F7F;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+}
+.detail_information-infor-user > p{
+    margin:0;
+}
+.detail_information-infor-user > p > i{
+    margin-right: 0.2rem;
+}
+.last{
+    margin-top: 1rem;
+}
+.detail_content{
+    margin-top: 5rem;
+    width: 100%;
+}
+.detail_content-navbar,
+.detail_chapter-navbar{
+    width: 100%;
+    border-bottom: 0.1rem solid #555;
+    font-size: 1.8rem;
+}
+.detail_content-navbar-head{
+    width: 12rem;
+    height: 4rem;
+    border-bottom: 0.3rem solid #6380B9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem 1rem 0 0;
+    color:#6390D2;
+    text-transform: uppercase;
+}
+.detail_chapter{
+    margin-top: 1rem;
+}
+.detail_content-content,
+.detail_chapter-navbar{
+    font-size: 1.8rem;
+    font-family: Tiro Devanagari Marathi,serif;
+    line-height: 2.5rem;
+}
+.detail_chapter-navbar-head{
+    width: 22rem;
+    height: 4rem;
+    border-bottom: 0.3rem solid #6380B9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem 1rem 0 0;
+    color:#6390D2;
+    text-transform: uppercase;
+}

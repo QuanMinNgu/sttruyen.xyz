@@ -1,0 +1,21 @@
+.categary-list-item-star{
+    margin-top: 1rem;
+    width: 9rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    overflow: hidden;
+    color:#EBC328;
+    position: relative;
+}
+.categary-list-item-star-full{
+    position: absolute;
+    left:0;
+    bottom:0;
+    right:0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    overflow: hidden;
+    color:#EBC328;
+}

@@ -148,7 +148,7 @@
     overflow: hidden;
     cursor: pointer;
     transition: all ease 0.2s;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 .topCard_wrapp:hover{
     transform: scale(1.03);
@@ -206,24 +206,10 @@
     object-fit: cover;
     z-index: 4;
 }
-.categary-list-item-star{
-    margin-top: 1rem;
-    width: 9rem;
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.5rem;
-    overflow: hidden;
-    color:#EBC328;
-    position: relative;
+.card_link{
+    text-decoration: none;
 }
-.categary-list-item-star-full{
-    position: absolute;
-    left:0;
-    bottom:0;
-    right:0;
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.5rem;
-    overflow: hidden;
-    color:#EBC328;
+.topCard_link{
+    text-decoration: none;
+    color:black;
 }
