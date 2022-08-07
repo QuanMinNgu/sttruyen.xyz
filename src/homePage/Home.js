@@ -9,8 +9,12 @@ const Home = () => {
         <div className='grid wide'>
             <div className='home-container'>
                 <div className='row'>
-                    <HomePart8 />
-                    <HomePart4 />
+                    <div className='col c-8 m-8 l-8'>
+                        <HomePart8 />
+                    </div>
+                    <div className='col c-4 m-4 l-4'>
+                        <HomePart4 />
+                    </div>
                 </div>
             </div>
         </div>

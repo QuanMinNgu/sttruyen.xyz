@@ -3,7 +3,7 @@ import TopCard from '~/card/topCard/TopCard'
 
 const HomePart4 = () => {
   return (
-    <div className='col c-4 m-4 l-4'>
+    <div className='homePart4_container'>
         <div className='narbar_top'>
             <p>Top</p>
         </div>

@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Card from '~/card/Card';
 const HomePart8 = () => {
   return (
-    <div className='col c-8 m-8 l-8'>
+    <div className='homePart8_container'>
         <div className='narvar_container'>
             <p>
                 <Link className='home_icon' to='/'>

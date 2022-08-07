@@ -8,7 +8,11 @@
 }
 .home-container{
     width: 100%;
-    padding: 0 2rem;
+}
+@media only screen and (max-width:539px){
+    .home-container{
+        padding:0 1rem;
+    }
 }
 .narvar_container{
     width: 100%;
