@@ -183,3 +183,23 @@
     font-size: 1.4rem;
     align-items: center;
 }
+.detail_comment-wrapp{
+    margin-top: 5rem;
+    width: 100%;
+}
+.detail_comment-navbar{
+    width: 100%;
+    border-bottom: 0.1rem solid rgba(0,0,0,.5);
+}
+.detail_comment-navbar-detail{
+    width: 14rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    border-bottom: 0.5rem solid #6380B9;
+    color:#6380B9;
+    text-transform: uppercase;
+    font-weight: 600;
+}

@@ -1,0 +1,116 @@
+.readPage_container{
+    margin-top: 4rem;
+    width: 100%;
+}
+@media only screen and (max-width:539px){
+    .readPage_container{
+        padding:0 2rem;
+    }
+}
+.readPage_wrap{
+    width: 100%;
+    border:0.1rem solid rgba(0,0,0,0.2);
+}
+.readPage_movie_detail-border{
+    width: 100%;
+    margin: 3rem 0;
+    display: flex;
+    justify-content: center;
+}
+.readPage_movie_detail{
+    width: 95%;
+    padding:2rem 0;
+    border-radius: 2rem;
+    border:0.1rem solid rgba(0,0,0,0.2);
+}
+.readPage_movie_detail-title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    text-transform: uppercase;
+    -webkit-text-fill-color: transparent;
+    background: -webkit-linear-gradient(90deg,#feb47b,#ff7e5f);
+    -webkit-background-clip: text;
+    transform: scaleY(1.5);
+    font-weight: 800;
+}
+.readPage_movie_detail-chapter{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    font-size: 1.7rem;
+    color:rgba(0,0,0,0.7);
+}
+.readPage_movie_detail-user{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    font-size: 1.4rem;
+}
+.readPage_content{
+    padding:0 2rem;
+    font-family: Charis SIL,serif;
+    white-space: pre-wrap;
+    font-size: 2.4rem;
+    word-spacing: 0.2rem;
+    line-height: 4.5rem;
+}
+.readPage_comment{
+    margin-top: 3rem;
+}
+.readPage_comment-wrapp{
+    width: 100%;
+    padding:0 2rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+.readPage_comment-navbar{
+    width: 100%;
+    border-bottom: 0.1rem solid rgba(0,0,0,0.2);
+}
+.readPage_comment-navbar-detail{
+    width: 14rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 0.5rem solid #6380B9;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    color:#6380B9;
+}
+.readPage_changePage{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.readPage_changePage-link{
+    text-decoration: none;
+}
+.readPage_changePage-prev{
+    width: 15rem;
+    height: 3.5rem;
+    background-color: #feb47b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2rem;
+    border-radius: 0.5rem;
+    color:white;
+    font-size: 1.6rem;
+    transition: all ease 0.2s;
+}
+.readPage_changePage-prev:hover{
+    transform: scale(1.05);
+}
+.readPage_Chapter-choice{
+    margin-right: 2rem;
+    width: 15rem;
+    height: 3.5rem;
+    outline: none;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+}

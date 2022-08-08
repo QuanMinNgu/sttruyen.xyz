@@ -150,7 +150,7 @@ const Detail = () => {
                             <div className='detail_content-chapter-detail_body-item'>
                                 <div className='detail_content-chapter-detail_body-chapter'>
                                     <span>
-                                        <Link style={{textDecoration:"none",color:"black"}} to='/asdsd'>
+                                        <Link style={{textDecoration:"none",color:"black"}} to='/asdsd/sxdas'>
                                             Chương 1
                                         </Link>
                                     </span>
@@ -171,6 +171,13 @@ const Detail = () => {
                                 </div>
                                 <div className='detail_content-chapter-detail_body-updateTimes'>
                                     <span>230</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='detail_comment-wrapp'>
+                            <div className='detail_comment-navbar'>
+                                <div className='detail_comment-navbar-detail'>
+                                    <i style={{marginRight:"0.5rem"}} className="fa-solid fa-comment"></i> Bình luận
                                 </div>
                             </div>
                         </div>
