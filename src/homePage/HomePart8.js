@@ -31,7 +31,7 @@ const HomePart8 = () => {
                 Sắp Xếp
                 <ul className='kinds_sort_wrapp'>
                     <li>
-                        <Link className='kinds_item' to='/'>Mới Nhất</Link>
+                        <Link className='kinds_item' to='/tim-truyen'>Mới Nhất</Link>
                     </li>
                     <li>
                         <Link className='kinds_item' to='/'>Cũ Nhất</Link>

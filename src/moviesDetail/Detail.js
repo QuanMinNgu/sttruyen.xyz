@@ -11,6 +11,10 @@ const Detail = () => {
     };
 
     useEffect(() => {
+        window.scrollTo(0,0);
+    },[]);
+
+    useEffect(() => {
         if(like){
             heart.current.innerHTML = '<i class="fa-solid fa-heart"></i>';
         }
