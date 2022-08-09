@@ -7,6 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Header from './components/head/Header';
 import { PublicRouter } from './routes/Routes';
+import Loading from './loading/Loading';
 
 function App() {
   return (

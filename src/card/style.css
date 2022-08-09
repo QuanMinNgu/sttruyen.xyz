@@ -167,13 +167,19 @@
 }
 @media only screen and (max-width:539px){
     .topCard_detail{
-        flex:5;
+        flex:7;
+    }
+    .topCard_wrapp{
+        height: 10rem;
+    }
+    .topCard_title{
+        margin:0;
     }
 }
 .topCard_read_like{
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 .topCard_like,
 .topCard_read{
