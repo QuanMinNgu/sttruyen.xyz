@@ -1,0 +1,11 @@
+.login_container{
+    margin-top: 5rem;
+    width: 100%;
+}
+.login_wrap{
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

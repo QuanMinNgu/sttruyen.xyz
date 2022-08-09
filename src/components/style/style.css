@@ -110,6 +110,15 @@
 .favorite-wrapper > p{
     position: relative;
 }
+.favorite-wrapper > p::after{
+    position: absolute;
+    top:100%;
+    content:"";
+    left:0;
+    right:0;
+    height: 2rem;
+    background-color: transparent;
+}
 .favorite-detail_container{
     position: absolute;
     top:130%;
@@ -187,4 +196,13 @@
 }
 .searchCard_container:last-child{
     border-bottom: none;
+}
+.favorite-detail_clearAll{
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:black;
+    font-size: 1.5rem;
 }

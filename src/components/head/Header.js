@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import FavoriteCard from '~/card/FavoriteCard';
 import '~/components/style/style.css'
 const Header = () => {
 
     const [search,setSearch] = useState('');
+    const [favor,setFavor] = useState('');
 
 
   return (
@@ -61,12 +63,22 @@ const Header = () => {
                                 <i style={{marginRight:"0.3rem"}} class="fa-solid fa-star-and-crescent"></i>
                                 Truyện Yêu Thích
                                 <div className='favorite-detail_container'>
+                                    {favor ? 
+                                    <div className='favorite-detail_container-having'>
+                                        <FavoriteCard />
+                                        <FavoriteCard />
+                                        <FavoriteCard />
+                                        <div className='favorite-detail_clearAll'>
+                                            <span>Xóa Tất Cả</span>
+                                        </div>
+                                    </div>
+                                    :
                                     <div className='favorite-detail_container-image'>
                                         <img className='favorite-detail_image' src='https://res.cloudinary.com/sttruyen/image/upload/v1654180246/Sttruyen/images_rawg9c.png' />
                                         <div className='favorite-detail_empty'>
                                             <span>Trống Rỗng</span>
                                         </div>
-                                    </div>
+                                    </div>}
                                 </div>
                             </p>
                         </div>

@@ -219,3 +219,60 @@
     text-decoration: none;
     color:black;
 }
+.favoriteCard_container{
+    width: 100%;
+    height: 8rem;
+    display: flex;
+    padding:1rem 1rem;
+    align-items: center;
+    border-bottom: 0.1rem solid rgba(0,0,0,0.05);
+    position: relative;
+}
+.favoriteCard_image{
+    width: 30%;
+    height: 100%;
+    border-radius: 0.5rem;
+}
+.favoriteCard_detail{
+    width: 80%;
+    padding-left: 1rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.favoriteCard_title{
+    width: 100%;
+    color:black;
+    font-size: 1.6rem;
+    font-weight: 500;
+    height: 2.5rem;
+    overflow: hidden;
+}
+.favoriteCard_title > span{
+    text-overflow: ellipsis;
+}
+.favoriteCard_chapter{
+    width: 100%;
+    color:rgba(0,0,0, 0.5);
+    font-size: 1.5rem;
+}
+.favoriteCard_times{
+    position: absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    display: flex;
+    align-items: center;
+    z-index: 30;
+    width: 3rem;
+    justify-content: center;
+}
+.favoriteCard_link-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 20;
+    text-decoration: none;
+}
