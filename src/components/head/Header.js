@@ -1,11 +1,27 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
+import CreateMovie from '~/admin/Movies/CreateMovie';
 import FavoriteCard from '~/card/FavoriteCard';
 import '~/components/style/style.css'
+import { isLogout } from '~/redux/slice/auth';
 const Header = () => {
 
+    //declare variable
     const [search,setSearch] = useState('');
     const [favor,setFavor] = useState('');
+    const [createProduct,setCreateProduct] = useState(false);
+    const auth = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+
+    //declare function 
+    const handleLogout = () => {
+        dispatch(isLogout());
+        toast.success('Đăng xuất thành công.');
+    }
 
 
   return (
@@ -26,7 +42,7 @@ const Header = () => {
                             <div className='search-container'>
                                 <input onChange={(e) => setSearch(e.target.value)} className='search-bar' type='text' placeholder='Tìm Kiếm' />
                                 <div className='search-icon'>
-                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <i className="fa-solid fa-magnifying-glass"></i>
                                 </div>
                                 {search &&
                                 <div className='search_cardContainer'>
@@ -58,8 +74,28 @@ const Header = () => {
                         </div>
                     </div>
                     <div className='col c-4 l-3 m-3'>
+                        {auth.user ? 
+                        <div className='auth-user-container'>
+                            <div className='auth-user-detail'>
+                                Admin
+                                <ul className='auth-user-list-rule'>
+                                    <li onClick={() => {
+                                        setCreateProduct(true);
+                                    }} className='auth-user-list-item'>
+                                        Tạo Truyện
+                                    </li>
+                                    <li className='auth-user-list-item'>
+                                        Tạo Thể Loại
+                                    </li>
+                                    <li onClick={handleLogout} className='auth-user-list-item'>
+                                        Đăng Xuất
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        :
                         <div className='favorite-wrapper'>
-                            <p>
+                            <div className='favorite-wrapper-container'>
                                 <i style={{marginRight:"0.3rem"}} class="fa-solid fa-star-and-crescent"></i>
                                 Truyện Yêu Thích
                                 <div className='favorite-detail_container'>
@@ -80,12 +116,13 @@ const Header = () => {
                                         </div>
                                     </div>}
                                 </div>
-                            </p>
-                        </div>
+                            </div>
+                        </div>}
                     </div>
                 </div>
             </div>
         </div>
+        {createProduct && <CreateMovie setCreateProduct={setCreateProduct}/>}
     </div>
   )
 }

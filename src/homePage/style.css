@@ -22,11 +22,13 @@
     align-items: center;
     font-weight: 600;
 }
-.narvar_container > p{
+.kinds_container,
+.kinds_container_sort,
+.navbar_home-icon {
     font-size: 1.7rem;
     padding:0 1.5rem;
 }
-.narvar_container > p:first-child{
+.navbar_home-icon{
     background-color: var(--default_color);
     height: 100%;
     display: flex;
@@ -38,7 +40,7 @@
     text-decoration: none;
     color:white;
 }
-.narvar_container > p:nth-child(2){
+.kinds_container{
     border-right: 0.3rem solid var(--default_color);
 }
 .narbar_top{

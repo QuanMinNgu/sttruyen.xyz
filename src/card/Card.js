@@ -64,7 +64,7 @@ const Card = () => {
                         <i className="fa-regular fa-heart"></i>
                     </div>
                     <div title='Thêm danh sách yêu thích' className='icon_plus'>
-                        <i class="fa-regular fa-plus"></i>
+                        <i className="fa-regular fa-plus"></i>
                     </div>
                 </div>
             </div>

@@ -8,12 +8,12 @@ const HomePart8 = () => {
   return (
     <div className='homePart8_container'>
         <div className='narvar_container'>
-            <p>
+            <p className='navbar_home-icon'>
                 <Link className='home_icon' to='/'>
                     Home    
                 </Link>
             </p>
-            <p className='kinds_container'>
+            <div className='kinds_container'>
                 Thể Loại
                 <ul className='kinds_wrapp'>
                     <li>
@@ -26,8 +26,8 @@ const HomePart8 = () => {
                         <Link className='kinds_item' to='/'>Hoạt hình</Link>
                     </li>
                 </ul>
-            </p>
-            <p className='kinds_container_sort'>
+            </div>
+            <div className='kinds_container_sort'>
                 Sắp Xếp
                 <ul className='kinds_sort_wrapp'>
                     <li>
@@ -43,7 +43,7 @@ const HomePart8 = () => {
                         <Link className='kinds_item' to='/'>Ít Lượt Xem</Link>
                     </li>
                 </ul>
-            </p>
+            </div>
         </div>
         <div className='line'></div>
         <div className='narvar_card'>
@@ -64,25 +64,39 @@ const HomePart8 = () => {
                         }}
                         >
                         <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to='/asdasd'>
+                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            </Link>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to='/asdasd'>
+                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            </Link>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to='/asdasd'>
+                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            </Link>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to='/asdasd'>
+                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            </Link>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to='/asdasd'>
+                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            </Link>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to='/asdasd'>
+                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            </Link>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to='/asdasd'>
+                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            </Link>
                         </SwiperSlide>
                     </Swiper>
                 </div>
@@ -102,25 +116,34 @@ const HomePart8 = () => {
                         }}
                         >
                         <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to='/asdasd'>
+                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            </Link>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to='/asdasd'>
+                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            </Link>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to='/asdasd'>
+                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            </Link>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to='/asdasd'>
+                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            </Link>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to='/asdasd'>
+                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            </Link>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to='/asdasd'>
+                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            </Link>
                         </SwiperSlide>
                     </Swiper>
                 </div>

@@ -94,7 +94,7 @@
     color:var(--default_color);
     position: relative;
 }
-.favorite-wrapper p {
+.favorite-wrapper-container {
     cursor: pointer;
 }
 @media only screen and (max-width:739px){
@@ -107,10 +107,10 @@
         height: 7rem;
     }
 }
-.favorite-wrapper > p{
+.favorite-wrapper-container{
     position: relative;
 }
-.favorite-wrapper > p::after{
+.favorite-wrapper-container::after{
     position: absolute;
     top:100%;
     content:"";
@@ -130,13 +130,23 @@
     border-radius: 2rem;
     z-index: 20;
     overflow: hidden;
-    opacity: 0;
-    transition: all ease 0.4s;
+    display: none;
+    animation: favoriteAppear 1s ease forwards;
 }
 
-.favorite-wrapper > p:hover .favorite-detail_container{
-    opacity: 1;
+.favorite-wrapper-container:hover .favorite-detail_container{
+    display: flex;
 }
+
+@keyframes favoriteAppear{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
 .favorite-detail_container-image{
     width: 100%;
     position: relative;
@@ -205,4 +215,60 @@
     justify-content: center;
     color:black;
     font-size: 1.5rem;
+}
+.auth-user-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 1.7rem;
+    color:#662D91;
+    font-weight: 700;
+}
+.auth-user-detail{
+    cursor: pointer;
+    position: relative;
+}
+.auth-user-detail::after{
+    position: absolute;
+    content:"";
+    top:100%;
+    width: 20rem;
+    right:0;
+    height: 5rem;
+}
+.auth-user-detail:hover .auth-user-list-rule{
+    display: block;
+}
+.auth-user-list-rule{
+    position: absolute;
+    top:100%;
+    right:0;
+    width: 20rem;
+    list-style: none;
+    padding:0;
+    background-color: white;
+    z-index: 20;
+    border:0.1rem solid rgba(0,0,0,0.3);
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0 0 1rem 0.5rem rgba(0,0,0,0.3);
+    display: none;
+}
+.auth-user-list-item{
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 0.1rem solid rgba(0,0,0, 0.5);
+    font-size: 1.5rem;
+    color:black;
+}
+.auth-user-list-item:last-child{
+    border-bottom: none;
+}
+.auth-user-list-item:hover{
+    transform: scale(1.1);
 }

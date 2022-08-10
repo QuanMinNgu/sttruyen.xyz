@@ -1,6 +1,5 @@
 import './App.css';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -8,8 +7,11 @@ import 'swiper/css/pagination';
 import Header from './components/head/Header';
 import { PublicRouter } from './routes/Routes';
 import Loading from './loading/Loading';
+import { useSelector } from 'react-redux';
 
 function App() {
+
+  const auth = useSelector(state => state.auth);
   return (
     <Router>
       <div className="App">
@@ -22,7 +24,13 @@ function App() {
           })}
         </Routes>
       </div>
-      <ToastContainer />
+      <div className='app-pc'>
+            <ToastContainer autoClose={1500} style={{fontSize:"1.5rem"}}/>
+      </div>
+      <div className='app-mobile'>
+        <ToastContainer autoClose={1500} position="top-left" style={{fontSize:"1.5rem",width:"50%"}}/>
+      </div>
+      {auth.Loading && <Loading />}
     </Router>
   );
 }
