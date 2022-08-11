@@ -1,11 +1,21 @@
+import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import HomePart4 from '~/homePage/HomePart4';
 import '~/moviesDetail/style.css';
+import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
 const Detail = () => {
 
     const heart = useRef();
     const [like,setLike] = useState(false);
+    const dispath = useDispatch();
+    const [productDetail,setProductDetail] = useState({});
+
+    const {slug} = useParams();
+
+
     const clipPath = {
         clipPath:'inset(0 10% 0 0)'
     };
@@ -23,6 +33,23 @@ const Detail = () => {
         }
     },[like]);
 
+    useEffect(() => {
+        let here = true;
+        dispath(isLoading());
+        axios.get(`/product/${slug}`)
+            .then(res => {
+                if(!here){
+                    return dispath(isSuccess());
+                }
+                dispath(isSuccess());
+                setProductDetail(res.data.product);
+            })
+            .catch(err => {
+                toast.error(err.response?.data?.msg);
+                dispath(isFailing());
+            })
+    },[slug]);
+
 
   return (
     <div className='grid wide'>
@@ -30,16 +57,16 @@ const Detail = () => {
             <div className='row'>
                 <div className='c-12 m-8 l-8'>
                     <div className='detail_title'>
-                        <span>Người anh trai</span>
+                        <span>{productDetail?.title}</span>
                     </div>
                     <div className='detail_update_times'>
-                        <i>[Cập nhật lúc: 11:30 5/5/2022]</i>
+                        <i>[Cập nhật lúc: {productDetail?.updatedAt}]</i>
                     </div>
                     <div className='detail_clearly'>
                         <div className='row'>
                             <div className='col c-4 m-4 l-4'>
                                 <div className='detail_clearly-image'>
-                                    <img src='https://movieplayer.net-cdn.it/t/images/2017/12/20/bright_jpg_191x283_crop_q85.jpg' />
+                                    <img src={productDetail?.image1} />
                                 </div>
                             </div>
                             <div className='col c-8 m-8 l-8'>
@@ -52,7 +79,7 @@ const Detail = () => {
                                 <div className='detail_clearly-more'>
                                     <span>
                                         <i style={{marginRight:"0.5rem"}} className="fa-solid fa-wifi"></i>
-                                        Tình trạng: hoàn thành
+                                        Tình trạng: {productDetail?.status ? 'Hoàn Thành' : 'Chưa Hoàn Thành'}
                                     </span>
                                 </div>
                                 <div className='detail_clearly-more'>
@@ -64,18 +91,18 @@ const Detail = () => {
                                 <div className='detail_clearly-more'>
                                     <span>
                                         <i style={{marginRight:"0.5rem"}} className="fa-solid fa-eye"></i>
-                                        Lượt đọc: 120
+                                        Lượt đọc: {productDetail?.watching}
                                     </span>
                                 </div>
                                 <div className='detail_clearly-more'>
                                     <span>
                                         <i style={{marginRight:"0.5rem"}} className="fa-solid fa-heart"></i>
-                                        Lượt thích: 450
+                                        Lượt thích: {productDetail?.like}
                                     </span>
                                 </div>
                                 <div className='detail_clearly-more'>
                                     <span>
-                                        2 lượt đánh giá
+                                        {productDetail?.reviewer} lượt đánh giá
                                     </span>
                                 </div>
                                 <div className='categary-list-item-star'>
@@ -103,12 +130,12 @@ const Detail = () => {
                         </div>
                     </div>
                     <div className='detail_button'>
-                        <Link className='detail_button-clearly-link' to='/asd'>
+                        <Link className='detail_button-clearly-link' to={`/${slug}/chuong_1`}>
                             <div className='detail_button-clearly'>
                                     Đọc từ đầu
                             </div>
                         </Link>
-                        <Link className='detail_button-clearly-link' to='/asd'>
+                        <Link className='detail_button-clearly-link' to={`/${slug}/chuong_${productDetail?.chapter?.length}`}>
                             <div className='detail_button-clearly'>
                                     Đọc mới nhất
                             </div>
@@ -127,7 +154,7 @@ const Detail = () => {
                     </div>
                     <div className='detail_content-content'>
                         <p>
-                            Hôm nay tôi có vinh dự khi được tham gia buổi thuyết trình của một vị bác sĩ đã dành 40 năm cuộc đời của mình để nghiên cứu về trái tim nhân tạo và trong buổi nói chuyện này anh ấy sẽ kể về cuộc đời của mình...
+                            {productDetail?.content}
                         </p>
                     </div>
                     <div className='detail_content-chapter-container'>
@@ -151,32 +178,22 @@ const Detail = () => {
                             </div>
                         </div>
                         <div className='detail_content-chapter-detail_body'>
+                            {productDetail?.chapter?.map((item,index) =>
                             <div className='detail_content-chapter-detail_body-item'>
                                 <div className='detail_content-chapter-detail_body-chapter'>
                                     <span>
-                                        <Link style={{textDecoration:"none",color:"black"}} to='/asdsd/sxdas'>
-                                            Chương 1
+                                        <Link style={{textDecoration:"none",color:"black"}} to={`/${slug}/chuong_${index + 1}`}>
+                                            Chương {index + 1}
                                         </Link>
                                     </span>
                                 </div>
                                 <div className='detail_content-chapter-detail_body-updateTimes'>
-                                    <span>22:30 22/06/2022</span>
+                                    <span>{item?.createdAt}</span>
                                 </div>
                                 <div className='detail_content-chapter-detail_body-updateTimes'>
-                                    <span>230</span>
+                                    <span>{item?.watching}</span>
                                 </div>
-                            </div>
-                            <div className='detail_content-chapter-detail_body-item'>
-                                <div className='detail_content-chapter-detail_body-chapter'>
-                                    <span>Chương 1</span>
-                                </div>
-                                <div className='detail_content-chapter-detail_body-updateTimes'>
-                                    <span>22:30 22/06/2022</span>
-                                </div>
-                                <div className='detail_content-chapter-detail_body-updateTimes'>
-                                    <span>230</span>
-                                </div>
-                            </div>
+                            </div>)}
                         </div>
                         <div className='detail_comment-wrapp'>
                             <div className='detail_comment-navbar'>

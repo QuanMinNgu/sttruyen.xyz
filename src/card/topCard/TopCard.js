@@ -2,24 +2,26 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import '~/card/style.css';
 
-const TopCard = () => {
+const TopCard = ({item}) => {
+
+    const rate =(item?.rating / (item?.reviewer * 5)) || 0;
 
     const clipPath = {
-        clipPath:'inset(0 10% 0 0)'
+        clipPath:`inset(0 ${100 - rate * 100}% 0 0)`
       }
   return (
-    <Link className='topCard_link' to='/asdasdas'>
+    <Link className='topCard_link' to={`/${item?.slug}`}>
         <div className='topCard_wrapp'>
             <div className='topCard_detail'>
                 <h1 className='topCard_title'>
-                    Brights
+                    {item?.title}
                 </h1>
                 <div className='topCard_read_like'>
                     <div className='topCard_read'>
-                        1000 <i className="fa-solid fa-eye"></i>
+                        {item?.watching} <i className="fa-solid fa-eye"></i>
                     </div>
                     <div className='topCard_like'>
-                        1000 <i style={{color:"red"}} className="fa-solid fa-heart"></i>
+                        {item?.like} <i style={{color:"red"}} className="fa-solid fa-heart"></i>
                     </div>
                 </div>
                 <div className='categary-list-item-star'>
@@ -38,7 +40,7 @@ const TopCard = () => {
                 </div>
             </div>
             <div className='topCard_image'>
-                <img className='topCard_img' src='https://movieplayer.net-cdn.it/t/images/2017/12/20/bright_jpg_191x283_crop_q85.jpg' />
+                <img className='topCard_img' src={item?.image1} />
                 <div className='topCard_linear'></div>
             </div>
         </div>

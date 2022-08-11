@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
+import CreateKinds from '~/admin/CreateKinds';
 import CreateMovie from '~/admin/Movies/CreateMovie';
 import FavoriteCard from '~/card/FavoriteCard';
 import '~/components/style/style.css'
@@ -12,6 +13,7 @@ const Header = () => {
     const [search,setSearch] = useState('');
     const [favor,setFavor] = useState('');
     const [createProduct,setCreateProduct] = useState(false);
+    const [createKind,setCreateKind] = useState(false);
     const auth = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -84,7 +86,11 @@ const Header = () => {
                                     }} className='auth-user-list-item'>
                                         Tạo Truyện
                                     </li>
-                                    <li className='auth-user-list-item'>
+                                    <li 
+                                    onClick={() => {
+                                        setCreateKind(true);
+                                    }}
+                                    className='auth-user-list-item'>
                                         Tạo Thể Loại
                                     </li>
                                     <li onClick={handleLogout} className='auth-user-list-item'>
@@ -123,6 +129,7 @@ const Header = () => {
             </div>
         </div>
         {createProduct && <CreateMovie setCreateProduct={setCreateProduct}/>}
+        {createKind && <CreateKinds setCreateKind={setCreateKind}/>}
     </div>
   )
 }

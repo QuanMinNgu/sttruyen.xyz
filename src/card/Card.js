@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import '~/card/style.css';
 
-const Card = () => {
+const Card = ({item}) => {
 
     const [like,setLike] = useState(false);
 
@@ -22,25 +22,29 @@ const Card = () => {
   return (
     <div className='card_wrapper'>
         <div className='card_image'>
-            <img className='card_image-detail' src="https://occ-0-2433-448.1.nflxso.net/art/cd5c9/3e192edf2027c536e25bb5d3b6ac93ced77cd5c9.jpg" />
+            <img className='card_image-detail' src={item?.image1} />
         </div>
         <div className='card_information'>
             <Link className='card_link' to='/asddas'>
                 <div className='card_image-small'>
-                    <img className='card_image_small_one' src='https://movieplayer.net-cdn.it/t/images/2017/12/20/bright_jpg_191x283_crop_q85.jpg' />
+                    <img className='card_image_small_one' src={item?.image2} />
                     <div className='card_small_infor'>
                         <h1 className='card_small_name'>
-                            Bright
+                            {item?.title}
                         </h1>
                         <h4 className='card_small_born'>
-                            2017,David Ayer
+                            sttruyenxyz
                         </h4>
                         <div className='card_small_times'>
                             <div className='card_small_time'>
-                                Chương 10
+                                Chương {item?.chapter?.length}
                             </div>
                             <div className='card_small_kinds'>
-                                <p>Hoạt Hình, Hài Hước</p>
+                                <p>
+                                    {item?.kinds?.map(item =>
+                                        item?.name    
+                                    )}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -50,10 +54,7 @@ const Card = () => {
                 <Link className='card_link' to='/asdads'>
                     <div className='card_image_content-detail'>
                         <h1>
-                            Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work with an Orc to find a weapon everyone is prepared to kill for.
-                            Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work with an Orc to find a weapon everyone is prepared to kill for.
-                            Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work with an Orc to find a weapon everyone is prepared to kill for.
-                            Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work with an Orc to find a weapon everyone is prepared to kill for.
+                            {item?.content}
                         </h1>
                     </div>
                 </Link>

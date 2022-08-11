@@ -12,7 +12,6 @@
 }
 .createMovie_wrap{
     width: 100rem;
-    height: 60rem;
     background-color: white;
     box-shadow: 0 0 1rem 0.5rem rgba(0,0,0,0.5);
     border-radius: 2rem;
@@ -44,8 +43,8 @@
 }
 .createMovie_image-items{
     width: 100%;
-    height: 45%;
-    margin:2.5% 0;
+    height: 20rem;
+    margin:1rem 0;
     border:0.1rem solid rgba(0,0,0,0.5);
     display: flex;
     align-items: center;
@@ -98,7 +97,7 @@
     outline: none;
     padding:1rem;
     font-size: 1.6rem;
-    min-height: 25rem;
+    min-height: 15rem;
 }
 .createMovie_detail-getStatus{
     width: 100%;
@@ -147,4 +146,168 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.createKind_container{
+    position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.createKind_wrap{
+    width: 60rem;
+    max-width: 100%;
+    min-height: 10rem;
+    background-color: white;
+    box-shadow: 0 0 1rem 0.5rem rgba(0,0,0,0.3);
+    border-radius: 2rem;
+    padding:1rem;
+    position: relative;
+}
+.createKind_times{
+    position: absolute;
+    top:2rem;
+    right:2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border:0.1rem solid rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+.createKind_title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+.createKind_default-kinds{
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+.createKind_default-items{
+    min-width: 10rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    border:0.2rem solid rgba(0,0,0,0.3);
+    border-radius: 3rem;
+    margin-right: 2rem;
+    padding:0 1rem;
+    position: relative;
+}
+.createKind_default-item-delete{
+    position: absolute;
+    top:0.5rem;
+    bottom:0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:  0 0 1rem 0.5rem black;
+    background-color: white;
+    padding:0 1rem;
+    border-radius: 50%;
+    z-index: 10;
+    display: none;
+    animation: deleteAnimation 0.6s ease;
+}
+.createKind_default-items:hover .createKind_default-item-delete{
+    display: flex;
+}
+@keyframes deleteAnimation{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.createKind_confirm{
+    width: 100%;
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.createKind_confirm-button > button{
+    width: 6rem;
+    height: 3rem;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+.createKind_default-createContainer{
+    width: 100%;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.createKind_default-createInput{
+    width: 80%;
+    height: 5rem;
+    outline: none;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    border-radius: 3rem;
+}
+.createKind_button{
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.createKind_button > button{
+    width: 15rem;
+    height: 5rem;
+    margin-right: 2rem;
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+.createButton:hover,
+.closeButton:hover{
+    transform: scale(1.1);
+}
+.createMovie_detail-kinds{
+    width: 100%;
+    margin-top: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+.createMovie_detail-kind-items{
+    margin-right: 2rem;
+    margin-bottom: 3rem;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+}
+.createMovie_detail-kind-items > input{
+    width: 2rem;
+    height: 2rem;
+    margin-left: 1rem;
+}
+.login_wrap{
+    width: 100%;
+    height: 40rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,10 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import '~/homePage/style.css';
 import { Navigation, Pagination, Autoplay} from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Card from '~/card/Card';
-const HomePart8 = () => {
+import { useDispatch } from 'react-redux';
+import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
+import axios from 'axios';
+const HomePart8 = ({products}) => {
+
+    const [kinds,setKinds] = useState([]);
+    const [product,setProduct] = useState([]);
+
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        setProduct(products);
+    },[products]);
+
+    useEffect(() => {
+        let here = true;
+        dispatch(isLoading());
+        axios.get('/kind')
+            .then(res => {
+                if(!here){
+                    dispatch(isSuccess());
+                    return;
+                }
+                dispatch(isSuccess());
+                setKinds(res.data.kind);
+            })
+            .catch(() => {
+                dispatch(isFailing());
+            })
+        return () => {
+            here = false;
+        }
+    },[]);
   return (
     <div className='homePart8_container'>
         <div className='narvar_container'>
@@ -16,31 +49,27 @@ const HomePart8 = () => {
             <div className='kinds_container'>
                 Thể Loại
                 <ul className='kinds_wrapp'>
-                    <li>
-                        <Link className='kinds_item' to='/'>Hoạt hình</Link>
+                    {kinds?.map(item =>
+                    <li key={item?._id + 'kindsHomePage8'}>
+                        <Link className='kinds_item' to={`/tim-truyen?kind=${item?.slug}`}>{item?.name}</Link>
                     </li>
-                    <li>
-                        <Link className='kinds_item' to='/'>Hoạt hình</Link>
-                    </li>
-                    <li>
-                        <Link className='kinds_item' to='/'>Hoạt hình</Link>
-                    </li>
+                    )}
                 </ul>
             </div>
             <div className='kinds_container_sort'>
                 Sắp Xếp
                 <ul className='kinds_sort_wrapp'>
                     <li>
-                        <Link className='kinds_item' to='/tim-truyen'>Mới Nhất</Link>
+                        <Link className='kinds_item' to='/tim-truyen?sort=createdAt'>Mới Nhất</Link>
                     </li>
                     <li>
-                        <Link className='kinds_item' to='/'>Cũ Nhất</Link>
+                        <Link className='kinds_item' to='/tim-truyen?sort=-createdAt'>Cũ Nhất</Link>
                     </li>
                     <li>
-                        <Link className='kinds_item' to='/'>Nhiều Lượt Xem</Link>
+                        <Link className='kinds_item' to='/tim-truyen?sort=watching'>Nhiều Lượt Xem</Link>
                     </li>
                     <li>
-                        <Link className='kinds_item' to='/'>Ít Lượt Xem</Link>
+                        <Link className='kinds_item' to='/tim-truyen?sort=-watching'>Ít Lượt Xem</Link>
                     </li>
                 </ul>
             </div>
@@ -63,41 +92,12 @@ const HomePart8 = () => {
                         disableOnInteraction: false,
                         }}
                         >
+                        {product?.map(item =>
                         <SwiperSlide>
-                            <Link to='/asdasd'>
-                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to={`/${item?.slug}`}>
+                                <img className='slide_image' src={item?.image1} />
                             </Link>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Link to='/asdasd'>
-                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
-                            </Link>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Link to='/asdasd'>
-                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
-                            </Link>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Link to='/asdasd'>
-                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
-                            </Link>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Link to='/asdasd'>
-                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
-                            </Link>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Link to='/asdasd'>
-                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
-                            </Link>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Link to='/asdasd'>
-                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
-                            </Link>
-                        </SwiperSlide>
+                        </SwiperSlide>)}
                     </Swiper>
                 </div>
                 {/* mobile view */}
@@ -115,36 +115,12 @@ const HomePart8 = () => {
                         disableOnInteraction: false,
                         }}
                         >
+                        {product?.map(item =>
                         <SwiperSlide>
-                            <Link to='/asdasd'>
-                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
+                            <Link to={`/${item?.slug}`}>
+                                <img className='slide_image' src={item?.image1} />
                             </Link>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Link to='/asdasd'>
-                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
-                            </Link>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Link to='/asdasd'>
-                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
-                            </Link>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Link to='/asdasd'>
-                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
-                            </Link>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Link to='/asdasd'>
-                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
-                            </Link>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Link to='/asdasd'>
-                                <img className='slide_image' src='https://file.vfo.vn/hinh/2015/06/su-tu-5.jpg' />
-                            </Link>
-                        </SwiperSlide>
+                        </SwiperSlide>)}
                     </Swiper>
                 </div>
             </div>
@@ -154,18 +130,15 @@ const HomePart8 = () => {
         </div>
         <div className='card_container'>
             <div className='row'>
-                <div className='col c-12 m-12 l-12'>
-                    <Card />
-                </div>
-                <div className='col c-12 m-12 l-12'>
-                    <Card />
-                </div>
-                <div className='col c-12 m-12 l-12'>
-                    <Card />
-                </div>
-                <div className='col c-12 m-12 l-12'>
-                    <Card />
-                </div>
+                {product?.map(item =>
+                <div key={item?._id + 'card_home'} className='col c-12 m-12 l-12'>
+                    <Card item={item}/>
+                </div>)}
+            </div>
+            <div className='watching_more-detail'>
+                <Link className='watching_more-detail-link' to='/tim-truyen'>
+                    Xem Tất Cả
+                </Link>
             </div>
         </div>
     </div>

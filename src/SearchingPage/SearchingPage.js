@@ -1,8 +1,40 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Card from '~/card/Card';
+import Paginating from '~/paginating/Paginating';
+import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
 import '~/SearchingPage/style.css';
 const SearchingPage = () => {
+
+    const [kinds,setKinds] = useState([]);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        let here = true;
+        dispatch(isLoading());
+        axios.get('/kind')
+            .then(res => {
+                if(!here){
+                    dispatch(isSuccess());
+                    return;
+                }
+                dispatch(isSuccess());
+                setKinds(res.data.kind);
+            })
+            .catch(() => {
+                dispatch(isFailing());
+            })
+        return () => {
+            here = false;
+        }
+    },[]);
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+    },[]);
+
   return (
     <div className='searchingPage_container'>
         <div className='grid wide'>
@@ -61,6 +93,7 @@ const SearchingPage = () => {
                                 <Card />
                                 <Card />
                             </div>
+                            <Paginating />
                         </div>
                     </div>
                     <div className='col c-0 m-4 l-4'>
@@ -69,36 +102,12 @@ const SearchingPage = () => {
                                 <span>Thể Loại</span>
                             </div>
                             <ul className='searchingPage_4-items'>
-                                <li className='searchingPage_4-item'>
-                                    <Link className='searchingPage_4-link' to='/asd'>
-                                        Hành động
+                                {kinds?.map(item => 
+                                <li key={item?._id + 'searching'} className='searchingPage_4-item'>
+                                    <Link className='searchingPage_4-link' to={`/tim-truyen?kind=${item?.slug}`}>
+                                        {item?.name}
                                     </Link>
-                                </li>
-                                <li className='searchingPage_4-item'>
-                                    <Link className='searchingPage_4-link' to='/asd'>
-                                        Hành động
-                                    </Link>
-                                </li>
-                                <li className='searchingPage_4-item'>
-                                    <Link className='searchingPage_4-link' to='/asd'>
-                                        Hành động
-                                    </Link>
-                                </li>
-                                <li className='searchingPage_4-item'>
-                                    <Link className='searchingPage_4-link' to='/asd'>
-                                        Hành động
-                                    </Link>
-                                </li>
-                                <li className='searchingPage_4-item'>
-                                    <Link className='searchingPage_4-link' to='/asd'>
-                                        Hành động
-                                    </Link>
-                                </li>
-                                <li className='searchingPage_4-item'>
-                                    <Link className='searchingPage_4-link' to='/asd'>
-                                        Hành động
-                                    </Link>
-                                </li>
+                                </li>)}
                             </ul>
                         </div>
                     </div>
