@@ -25,7 +25,7 @@ const Card = ({item}) => {
             <img className='card_image-detail' src={item?.image1} />
         </div>
         <div className='card_information'>
-            <Link className='card_link' to='/asddas'>
+            <Link className='card_link' to={`/${item?.slug}`}>
                 <div className='card_image-small'>
                     <img className='card_image_small_one' src={item?.image2} />
                     <div className='card_small_infor'>
@@ -41,8 +41,15 @@ const Card = ({item}) => {
                             </div>
                             <div className='card_small_kinds'>
                                 <p>
-                                    {item?.kinds?.map(item =>
-                                        item?.name    
+                                    {item?.kinds?.map((infor,index) =>
+                                    {
+                                        if(index !== item?.kinds?.length - 1){
+                                            return infor?.name + " - ";
+                                        }else{
+                                            return infor?.name;
+                                        }
+                                    }
+                                           
                                     )}
                                 </p>
                             </div>

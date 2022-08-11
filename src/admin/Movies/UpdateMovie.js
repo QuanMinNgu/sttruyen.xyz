@@ -7,10 +7,8 @@ import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
 import KindBox from './KindBox';
 import '~/admin/style.css';
 
+const UpdateMovie = ({setUpdateMovie,item}) => {
 
-const CreateMovie = ({setCreateProduct}) => {
-
-    // variable
     const [image1,setImage1] = useState('');
     const [image2,setImage2] = useState('');
     const [kinds,setKinds] = useState([]);
@@ -18,6 +16,11 @@ const CreateMovie = ({setCreateProduct}) => {
 
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        if(item){
+            setPKinds(item?.kinds);
+        }
+    },[item]);
 
     const titleRef = useRef();
     const contentRef = useRef();
@@ -30,33 +33,39 @@ const CreateMovie = ({setCreateProduct}) => {
 
     // function 
     const handleCreateMovie = async () => {
-        if(!titleRef.current.value || !contentRef.current.value || !image1Ref.current || !image2Ref.current || pKinds.length === 0){
+        if(!titleRef.current.value || !contentRef.current.value  || pKinds.length === 0){
             return toast.error('Vui lòng điền hết thông tin (bao gồm cả ảnh.)');
         }
-        let urlImage1;
-        let urlImage2;
-        const formData = new FormData();
-        const formData2 = new FormData();
-        formData.append('file',image1Ref.current[0]);
-        formData2.append('file',image2Ref.current[0]);
-        formData.append("upload_preset","sttruyenxyz");
-        formData2.append("upload_preset","sttruyenxyz");
-        dispatch(isLoading());
-        try{
-            const res = await axios.post("https://api.cloudinary.com/v1_1/sttruyen/image/upload",formData);
-            urlImage1 = res.data.url;
-        }   
-        catch(err){
-            return dispatch(isFailing());
+        let urlImage1 = item?.image1;
+        let urlImage2 = item?.image2;
+        if(image1Ref.current){
+            const formData = new FormData();
+            formData.append('file',image1Ref.current[0]);
+            formData.append("upload_preset","sttruyenxyz");
+            dispatch(isLoading());
+            try{
+                const res = await axios.post("https://api.cloudinary.com/v1_1/sttruyen/image/upload",formData);
+                urlImage1 = res.data.url;
+            }   
+            catch(err){
+                return dispatch(isFailing());
+            }
+            dispatch(isSuccess());
         }
-        try{
-            const res = await axios.post("https://api.cloudinary.com/v1_1/sttruyen/image/upload",formData2);
-            urlImage2 = res.data.url;
-        }   
-        catch(err){
-            return dispatch(isFailing());
+        if(image2Ref.current){
+            const formData2 = new FormData();
+            formData2.append('file',image2Ref.current[0]);
+            formData2.append("upload_preset","sttruyenxyz");
+            dispatch(isLoading());
+            try{
+                const res = await axios.post("https://api.cloudinary.com/v1_1/sttruyen/image/upload",formData2);
+                urlImage2 = res.data.url;
+            }   
+            catch(err){
+                return dispatch(isFailing());
+            }
+            dispatch(isSuccess());
         }
-        dispatch(isSuccess());
         const movie = {
             title:titleRef.current.value,
             content:contentRef.current.value,
@@ -65,8 +74,9 @@ const CreateMovie = ({setCreateProduct}) => {
             status:statusRef.current.checked,
             kinds:pKinds
         }
+
         try{
-            const res = await axios.post('/product/create',{...movie},{
+            const res = await axios.put(`/product/update/${item?.slug}`,{...movie},{
                 headers:{
                     token:`Bearer ${auth.user.accessToken}`
                 }
@@ -79,8 +89,6 @@ const CreateMovie = ({setCreateProduct}) => {
             dispatch(isFailing());
         }
     }
-
-
 
 
     //api
@@ -122,7 +130,7 @@ const CreateMovie = ({setCreateProduct}) => {
     const {getRootProps, getInputProps} = useDropzone({onDrop});
 
   return (
-    <div className='createMovie_container'>
+    <div className='updateMovie_container'>
         <div className='createMovie_wrap'>
             <div className='createMovie_image-container'>
                 <div className='createMovie_image-items' {...getRootProps()}>
@@ -131,7 +139,7 @@ const CreateMovie = ({setCreateProduct}) => {
                         <i className="fa-solid fa-image"></i>
                     </div>
                     <div className='image_create-container'>
-                        <img className='image_items' src={image1}/>
+                        <img className='image_items' src={image1 || item?.image1}/>
                     </div>
                 </div>
                 <div className='createMovie_image-items' {...getRootProps()}>
@@ -140,25 +148,25 @@ const CreateMovie = ({setCreateProduct}) => {
                         <i className="fa-solid fa-image"></i>
                     </div>
                     <div className='image_create-container'>
-                        <img className='image_items' src={image2}/>
+                        <img className='image_items' src={image2 || item?.image2}/>
                     </div>
                 </div>
             </div>
             <div className='createMovie_detail-container'>
                 <div className='createMovie_detail-title'>
-                    <h1>Tạo Truyện</h1>
+                    <h1>Sửa Truyện</h1>
                 </div>
                 <div className='createMovie_detail-getTitle'>
                     <label>Nhập Title:</label>
-                    <input ref={titleRef} placeholder='Nhập Title' type='text' />
+                    <input defaultValue={item?.title} ref={titleRef} placeholder='Nhập Title' type='text' />
                 </div>
                 <div className='createMovie_detail-getContent'>
                     <label>Content:</label>
-                    <textarea placeholder='Nhập nội dung' ref={contentRef}/>
+                    <textarea defaultValue={item?.content} placeholder='Nhập nội dung' ref={contentRef}/>
                 </div>
                 <div className='createMovie_detail-kinds'>
-                    {kinds.map(item =>
-                    <KindBox totalKind={[]} key={item?._id + 'kinds'} item={item} setPKinds={setPKinds} pKinds={pKinds}/>
+                    {kinds.map(infor =>
+                        <KindBox totalKind={item?.kinds} key={infor?._id + 'kinds'} item={infor} setPKinds={setPKinds} pKinds={pKinds}/>
                     )}
                 </div>
                 <div className='createMovie_detail-getStatus'>
@@ -171,13 +179,13 @@ const CreateMovie = ({setCreateProduct}) => {
                     className='createButton'>Tạo Mới</button>
                     <button 
                     onClick={() => {
-                        setCreateProduct(false);
+                        setUpdateMovie(false);
                     }}
                     className='closeButton'>Đóng</button>
                 </div>
             </div>
             <div onClick={() => {
-                setCreateProduct(false);
+                setUpdateMovie(false);
             }} className='createMovie_times'>
                 <i className="fa-solid fa-xmark"></i>
             </div>
@@ -186,4 +194,4 @@ const CreateMovie = ({setCreateProduct}) => {
   )
 }
 
-export default CreateMovie
+export default UpdateMovie

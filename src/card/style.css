@@ -192,6 +192,13 @@
     font-size: 1.8rem;
     font-weight: 450;
     font-family: 'Charis SIL', serif;
+    line-height: 1.6rem;
+    height: 1.7rem;
+    overflow: hidden;
+    margin-left: 0.7rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 

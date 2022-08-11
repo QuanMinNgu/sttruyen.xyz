@@ -116,7 +116,7 @@ const HomePart8 = ({products}) => {
                         }}
                         >
                         {product?.map(item =>
-                        <SwiperSlide>
+                        <SwiperSlide key={item?._id + "productImage"}>
                             <Link to={`/${item?.slug}`}>
                                 <img className='slide_image' src={item?.image1} />
                             </Link>

@@ -1,8 +1,15 @@
 import React, { useEffect, useRef } from 'react'
 
-const KindBox = ({item,setPKinds,pKinds}) => {
+const KindBox = ({totalKind,item,setPKinds,pKinds}) => {
 
     const checkRef = useRef();
+
+    useEffect(() => {
+        const checked = totalKind?.some(infor => infor._id.toString() === item._id.toString());
+        if(checked){
+            checkRef.current.checked = true;
+        }
+    },[]);
 
     const handleChange = () => {
         if(checkRef.current?.checked){

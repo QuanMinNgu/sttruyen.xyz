@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import UpdateMovie from '~/admin/Movies/UpdateMovie';
 import HomePart4 from '~/homePage/HomePart4';
 import '~/moviesDetail/style.css';
 import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
@@ -12,14 +13,26 @@ const Detail = () => {
     const [like,setLike] = useState(false);
     const dispath = useDispatch();
     const [productDetail,setProductDetail] = useState({});
+    const [updateMovies,setUpdateMovie] = useState(false);
+    const [deleteConfirm,setDeleteConfirm] = useState(false);
+    const auth = useSelector(state => state.auth);
+    const titleRef = useRef();
+
+    const kindRef = useRef('');
 
     const {slug} = useParams();
 
+    const ratingRef = useRef(0);
 
     const clipPath = {
-        clipPath:'inset(0 10% 0 0)'
+        clipPath:`inset(0 ${100 - ratingRef.current * 100}% 0 0)`
     };
 
+    useEffect(() => {
+        if(productDetail){
+            ratingRef.current = productDetail?.rating / (productDetail?.reviewer * 5);
+        }
+    },[productDetail]);
     useEffect(() => {
         window.scrollTo(0,0);
     },[]);
@@ -43,12 +56,44 @@ const Detail = () => {
                 }
                 dispath(isSuccess());
                 setProductDetail(res.data.product);
+                if(!kindRef.current){
+                    res.data.product?.kinds?.forEach((item,index) => {
+                        if(index !== res.data.product?.kinds.length - 1){
+                            kindRef.current = kindRef.current +  item?.name + " - ";  
+                        }
+                        else{
+                            kindRef.current = kindRef.current + item?.name;  
+                        }
+                    })
+                }
             })
             .catch(err => {
                 toast.error(err.response?.data?.msg);
                 dispath(isFailing());
             })
     },[slug]);
+
+
+    //function
+    const handleDeleteMovie = async () => {
+        setDeleteConfirm(false);
+        dispath(isLoading());
+        try{
+            const res = await axios.post(`/product/delete/${productDetail?.slug}`,{
+                title:titleRef.current.value
+            },{
+                headers:{
+                    token:`Bearer ${auth.user?.accessToken}`
+                }
+            })
+            toast.success(res.data.msg);
+            dispath(isSuccess());
+        }
+        catch(err){
+            toast.error(err.response.data.msg);
+            dispath(isFailing());
+        }
+    }
 
 
   return (
@@ -85,7 +130,7 @@ const Detail = () => {
                                 <div className='detail_clearly-more'>
                                     <span>
                                         <i style={{marginRight:"0.5rem"}} className="fa-solid fa-tag"></i>
-                                        Thể loại: hành động - hài hước
+                                        Thể loại: {kindRef.current}
                                     </span>
                                 </div>
                                 <div className='detail_clearly-more'>
@@ -140,9 +185,26 @@ const Detail = () => {
                                     Đọc mới nhất
                             </div>
                         </Link>
+                        {auth.user ? 
+                        <>
+                        <div onClick={() => {
+                            setUpdateMovie(true);
+                        }} className='detail_button-favorite'>
+                            Sửa Lại Truyện
+                        </div>
+                        <div
+                        onClick={() => {
+                            setDeleteConfirm(true);
+                        }}
+                        style={{marginLeft:"1rem"}} className='detail_button-favorite'>
+                            Xóa Truyện
+                        </div>
+                        </>
+                        :
                         <div className='detail_button-favorite'>
                             Thêm vào yêu thích
                         </div>
+                        }
                     </div>
                     <div className='detail_content-navbar-container'>
                         <div className='detail_content-navbar'>
@@ -209,6 +271,28 @@ const Detail = () => {
                 </div>
             </div>
         </div>
+        {updateMovies && <UpdateMovie item={productDetail} setUpdateMovie={setUpdateMovie}/>}
+        {deleteConfirm &&
+        <div className='deleteConfirm_container'>
+            <div className='deleteConfirm_wrap'>
+                <div className='deleteConfirm_title'>
+                    <span>Bạn có thực sự muốn xóa {productDetail?.title} ?</span>
+                </div> 
+                <div className='deleteConfirm_pass'>
+                    <input ref={titleRef} type='password' />
+                </div>
+                <div className='deleteConfirm_button'>
+                    <button
+                    onClick={handleDeleteMovie}
+                    >Xóa</button>
+                    <button
+                    onClick={() => {
+                        setDeleteConfirm(false);
+                    }}
+                    >Hủy</button>
+                </div>
+            </div>  
+        </div>}
     </div>
   )
 }
