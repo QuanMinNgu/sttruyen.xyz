@@ -332,4 +332,69 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0,0,0,0.3);
+    z-index: 50;
+}
+.createChapter_wrap{
+    width: calc(100% - 4rem);
+    min-height: 40rem;
+    background-color: white;
+    box-shadow: 0 0 1rem 0.5rem black;
+    border-radius: 4rem;
+    padding:1rem;
+}
+.createChapter_title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+.createChapter_title-input{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+}
+.createChapter_title-input > input{
+    margin-left: 2rem;
+    min-width: 80rem;
+    height: 5rem;
+    border-radius: 3rem;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+}
+.createChapter_content-input{
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+}
+.createChapter_content-input > textarea{
+    width: 90%;
+    height: 50rem;
+    padding:0.5rem;
+    outline: none;
+    resize: none;
+    font-size: 1.4rem;
+}
+.createChapter_button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.createChapter_button > button{
+    width: 15rem;
+    margin-right: 2rem;
+    height: 4rem;
+    border-radius: 2rem;
+    color:white;
+    background-color: green;
+    cursor: pointer;
+}
+.createChapter_button > button:hover{
+    transform: scale(1.1);
 }

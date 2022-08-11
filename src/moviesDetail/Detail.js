@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import CreateChapter from '~/admin/chapters/CreateChapter';
 import UpdateMovie from '~/admin/Movies/UpdateMovie';
 import HomePart4 from '~/homePage/HomePart4';
 import '~/moviesDetail/style.css';
@@ -15,6 +16,7 @@ const Detail = () => {
     const [productDetail,setProductDetail] = useState({});
     const [updateMovies,setUpdateMovie] = useState(false);
     const [deleteConfirm,setDeleteConfirm] = useState(false);
+    const [createChapter,setCreateChapter] = useState(false);
     const auth = useSelector(state => state.auth);
     const titleRef = useRef();
 
@@ -226,6 +228,14 @@ const Detail = () => {
                                 Danh sách chương
                             </p>
                         </div>
+                        {auth.user?.accessToken &&
+                        <div 
+                        onClick={() => {
+                            setCreateChapter(true);
+                        }}
+                        title='Admin Only' className='detail_add-chapter-container'>
+                            Thêm Chapter
+                        </div>}
                     </div>
                     <div className='detail_content-chapter-detail-container'>
                         <div className='detail_content-chapter-detail-head'>
@@ -241,7 +251,7 @@ const Detail = () => {
                         </div>
                         <div className='detail_content-chapter-detail_body'>
                             {productDetail?.chapter?.map((item,index) =>
-                            <div className='detail_content-chapter-detail_body-item'>
+                            <div key={index + "asdasdd"} className='detail_content-chapter-detail_body-item'>
                                 <div className='detail_content-chapter-detail_body-chapter'>
                                     <span>
                                         <Link style={{textDecoration:"none",color:"black"}} to={`/${slug}/chuong_${index + 1}`}>
@@ -272,6 +282,7 @@ const Detail = () => {
             </div>
         </div>
         {updateMovies && <UpdateMovie item={productDetail} setUpdateMovie={setUpdateMovie}/>}
+        {createChapter && <CreateChapter setCreateChapter={setCreateChapter} slug={productDetail?.slug}/>}
         {deleteConfirm &&
         <div className='deleteConfirm_container'>
             <div className='deleteConfirm_wrap'>

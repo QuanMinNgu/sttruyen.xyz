@@ -120,6 +120,7 @@
 .detail_content-chapter-container{
     margin-top: 2rem;
     border-bottom: 0.1rem solid #555;
+    display: flex;
 }
 .detail_content-chapter{
     width: 22rem;
@@ -259,4 +260,21 @@
 }
 .deleteConfirm_button > button:hover{
     transform: scale(1.1);
+}
+.detail_add-chapter-container{
+    width: 15rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2rem;
+    background-color: #FF8181;
+    font-size: 1.7rem;
+    border-radius: 4rem;
+    color:white;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+.detail_add-chapter-container:hover{
+    transform: scale(1.05);
 }
