@@ -115,12 +115,18 @@ const SearchingPage = () => {
                             <div className='row'>
                                 <div className='col c-12 l-0 m-0'>
                                     <div className='searchingPage_8-kinds'>
-                                        <select className='searchingPage_8-select'>
-                                            <option>Tất cả thể loại</option>
-                                            <option>Tất cả thể loại</option>
-                                            <option>Tất cả thể loại</option>
-                                            <option>Tất cả thể loại</option>
-                                            <option>Tất cả thể loại</option>
+                                        <select onChange={(e) => {
+                                            if(e.target.value){
+                                                navigate(`?kind=${e.target.value}`);
+                                            }
+                                            else{
+                                                navigate(`/tim-truyen`)
+                                            }
+                                        }} className='searchingPage_8-select'>
+                                            <option value={''} defaultChecked>Tất Cả</option>
+                                            {kinds?.map(item => 
+                                                <option value={item?.slug}>{item?.name}</option>
+                                            )}
                                         </select>
                                     </div>
                                 </div>

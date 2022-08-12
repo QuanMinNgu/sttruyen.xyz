@@ -196,6 +196,12 @@
     font-size: 2.5rem;
     color:rgba(0,0,0, 0.6);
     font-weight: 700;
+    height: 2.4rem;
+    line-height: 2.5rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 .searchCard-information-chapter{
     width: 100%;

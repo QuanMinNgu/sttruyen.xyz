@@ -93,7 +93,7 @@ const HomePart8 = ({products}) => {
                         }}
                         >
                         {product?.map(item =>
-                        <SwiperSlide>
+                        <SwiperSlide key={item?._id + "productImageCard"}>
                             <Link to={`/${item?.slug}`}>
                                 <img className='slide_image' src={item?.image1} />
                             </Link>
