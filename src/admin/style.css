@@ -398,3 +398,72 @@
 .createChapter_button > button:hover{
     transform: scale(1.1);
 }
+.updateChaper_container{
+    position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 50;
+}
+.deleteChapter_container{
+    position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 50;
+}
+.deleteChapter_wrap{
+    width: 80rem;
+    min-height: 10rem;
+    background-color: white;
+    box-shadow: 0 0 1rem 0.2rem black;
+    border-radius: 3rem;
+    padding:1rem;
+}
+.deleteChapter_title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.7rem;
+}
+.deleteChapter_input{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.deleteChapter_input > input{
+    width: 80%;
+    height: 5rem;
+    border-radius: 3rem;
+    padding:0 2rem;
+    font-size: 1.7rem;
+}
+.deleteChapter_button-container{
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.deleteChapter_button-container > button{
+    width: 15rem;
+    height: 4rem;
+    margin-right: 2rem;
+    border-radius: 2rem;
+    cursor:pointer;
+    background-color: green;
+    color:white;
+}
+.deleteChapter_button-container > button:hover{
+    scale: 1.1;
+}

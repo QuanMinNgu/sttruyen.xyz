@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CreateChapter from '~/admin/chapters/CreateChapter';
+import DeleteChapter from '~/admin/chapters/DeleteChapter';
+import UpdateChapter from '~/admin/chapters/UpdateChapter';
 import UpdateMovie from '~/admin/Movies/UpdateMovie';
 import HomePart4 from '~/homePage/HomePart4';
 import '~/moviesDetail/style.css';
@@ -17,6 +19,12 @@ const Detail = () => {
     const [updateMovies,setUpdateMovie] = useState(false);
     const [deleteConfirm,setDeleteConfirm] = useState(false);
     const [createChapter,setCreateChapter] = useState(false);
+    const [updateChapter,setUpdateChapter] = useState(false);
+    const [deleteChapter,setDeleteChapter] = useState(false);
+
+    const itemRef = useRef({});
+    const chapterRef = useRef(0);
+
     const auth = useSelector(state => state.auth);
     const titleRef = useRef();
 
@@ -97,6 +105,15 @@ const Detail = () => {
         }
     }
 
+    function dateFormat(date) {
+        const month = date.getMonth();
+        const day = date.getDate();
+        const hour = date.getHours();
+        const minute = date.getMinutes();
+        const monthString = month >= 10 ? month : `0${month}`;
+        const dayString = day >= 10 ? day : `0${day}`;
+        return `${hour}:${minute} ${dayString}-${monthString}-${date.getFullYear()}`;
+    }
 
   return (
     <div className='grid wide'>
@@ -107,7 +124,7 @@ const Detail = () => {
                         <span>{productDetail?.title}</span>
                     </div>
                     <div className='detail_update_times'>
-                        <i>[Cập nhật lúc: {productDetail?.updatedAt}]</i>
+                        <i>[Cập nhật lúc: {productDetail?.updatedAt && dateFormat(new Date(productDetail?.updatedAt))}]</i>
                     </div>
                     <div className='detail_clearly'>
                         <div className='row'>
@@ -258,9 +275,25 @@ const Detail = () => {
                                             Chương {index + 1}
                                         </Link>
                                     </span>
+                                    {auth.user?.accessToken &&
+                                    <div className='detail_content-chapter-buttonChapter'>
+                                        <button
+                                        onClick={() =>{
+                                            chapterRef.current = index + 1;
+                                            itemRef.current = item;
+                                            setDeleteChapter(true);
+                                        }}
+                                        >Xóa</button>
+                                        <button
+                                        onClick={() => {
+                                            itemRef.current = item;
+                                            setUpdateChapter(true);
+                                        }}
+                                        >Cập Nhật</button>
+                                    </div>}
                                 </div>
                                 <div className='detail_content-chapter-detail_body-updateTimes'>
-                                    <span>{item?.createdAt}</span>
+                                    <span>{item?.createdAt && dateFormat(new Date(item?.createdAt))}</span>
                                 </div>
                                 <div className='detail_content-chapter-detail_body-updateTimes'>
                                     <span>{item?.watching}</span>
@@ -283,6 +316,8 @@ const Detail = () => {
         </div>
         {updateMovies && <UpdateMovie item={productDetail} setUpdateMovie={setUpdateMovie}/>}
         {createChapter && <CreateChapter setCreateChapter={setCreateChapter} slug={productDetail?.slug}/>}
+        {updateChapter && <UpdateChapter setUpdateChapter={setUpdateChapter} item={itemRef.current}/>}
+        {deleteChapter && <DeleteChapter setDeleteChapter={setDeleteChapter} item={chapterRef.current} id={itemRef.current?._id}/>}
         {deleteConfirm &&
         <div className='deleteConfirm_container'>
             <div className='deleteConfirm_wrap'>

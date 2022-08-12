@@ -278,3 +278,22 @@
 .detail_add-chapter-container:hover{
     transform: scale(1.05);
 }
+.detail_content-chapter-buttonChapter{
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+.detail_content-chapter-buttonChapter > button{
+    margin-left: 1rem;
+    min-width: 4rem;
+    font-size: 1.2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    color:White;
+    background-color: #009fff;
+}
+.detail_content-chapter-buttonChapter > button:hover{
+    scale: 1.1;
+}
