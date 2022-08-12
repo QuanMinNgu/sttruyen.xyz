@@ -171,6 +171,28 @@ const Detail = ({cache}) => {
         }
     },[]);
 
+
+    const handleAddfavoriteCard = () => {
+        const carts = JSON.parse(localStorage.getItem('favorite'));
+        if(!carts){
+            const newCarts = [{title:productDetail?.title,chapter:productDetail?.chapter.length,image:productDetail?.image1,slug:productDetail?.slug,id:productDetail?._id}];
+            localStorage.setItem('favorite',JSON.stringify(newCarts));
+            toast.success('Thêm thành công.');
+        }
+        else{
+            const checked = carts.some(infor => infor.id.toString() === productDetail?._id.toString());
+            if(checked){
+                return toast.error("Bạn đã thêm truyện này rồi.");
+            }
+            else{
+                const newCarts = [...carts,{title:productDetail?.title,chapter:productDetail?.chapter.length,image:productDetail?.image1,slug:productDetail?.slug,id:productDetail?._id}];
+                localStorage.removeItem('favorite');
+                localStorage.setItem('favorite',JSON.stringify(newCarts));
+                toast.success('Thêm thành công.');
+            }
+        }
+    }
+
   return (
     <div className='grid wide'>
         <div className='detail_wrapp'>
@@ -276,7 +298,9 @@ const Detail = ({cache}) => {
                         </div>
                         </>
                         :
-                        <div className='detail_button-favorite'>
+                        <div 
+                        onClick={handleAddfavoriteCard}
+                        className='detail_button-favorite'>
                             Thêm vào yêu thích
                         </div>
                         }

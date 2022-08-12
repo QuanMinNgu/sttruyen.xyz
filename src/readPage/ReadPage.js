@@ -73,8 +73,20 @@ const ReadPage = ({cache}) => {
     },[]);
 
     useEffect(() => {
-        if(socket){
-            
+        const timeOutRead = setTimeout(() => {
+            if(socket){
+                socket.emit('readingComic',{
+                    slug,
+                    chapter
+                });
+
+            }
+        },10000);
+
+        return () => {
+            if(timeOutRead){
+                clearTimeout(timeOutRead);
+            }
         }
     },[socket,chapter,slug]);
 
