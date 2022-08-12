@@ -43,7 +43,8 @@ const SearchingPage = () => {
 
     useEffect(() => {
         let here = true;
-        const url = `/product?${search}`;
+        const url = `/product${search}`;
+        console.log(url)
         dispatch(isLoading());
         axios.get(url)  
             .then(res =>{
@@ -73,9 +74,9 @@ const SearchingPage = () => {
     const {page} = usePaginating({count:product?.count || 12,limit:12});
     const navigate = useNavigate();
 
+    const sort = new URLSearchParams(search).get('sort') || '';
+    const kind = new URLSearchParams(search).get('kind') || '';
     useEffect(() => {
-        const sort = new URLSearchParams(search).get('sort') || '';
-        const kind = new URLSearchParams(search).get('kind') || '';
 
         
         const searching = {
@@ -99,7 +100,7 @@ const SearchingPage = () => {
         const newSearch = new URLSearchParams(searching).toString();
         navigate(`?${newSearch}`);
 
-    },[search,page,statusCard,sortDetail]);
+    },[search,page,statusCard,sortDetail,kind,sort]);
 
   return (
     <div className='searchingPage_container'>
@@ -154,9 +155,9 @@ const SearchingPage = () => {
                                 <div className='searchingPage_8-order-items'>
                                     <div 
                                     onClick={() => {
-                                        setSortDetail('');
+                                        setSortDetail('createdAt');
                                     }}
-                                    className={`searchingPage_8-order-item ${getSort('')}`}>
+                                    className={`searchingPage_8-order-item ${getSort('createdAt')}`}>
                                         Mới Nhất
                                     </div>
                                     <div 
@@ -196,6 +197,11 @@ const SearchingPage = () => {
                                 <span>Thể Loại</span>
                             </div>
                             <ul className='searchingPage_4-items'>
+                                <li className='searchingPage_4-item'>
+                                    <Link className='searchingPage_4-link' to={`/tim-truyen`}>
+                                        Tất cả
+                                    </Link>
+                                </li>
                                 {kinds?.map(item => 
                                 <li key={item?._id + 'searching'} className='searchingPage_4-item'>
                                     <Link className='searchingPage_4-link' to={`/tim-truyen?kind=${item?.slug}`}>
