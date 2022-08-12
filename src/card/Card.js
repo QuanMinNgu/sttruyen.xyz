@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import '~/card/style.css';
 
 const Card = ({item}) => {
@@ -18,6 +19,27 @@ const Card = ({item}) => {
             heart.current.classList.remove('icon_heart-red');
         }
     },[like]);
+
+    const handleAddfavoriteCard = () => {
+        const carts = JSON.parse(localStorage.getItem('favorite'));
+        if(!carts){
+            const newCarts = [{title:item.title,chapter:item.chapter.length,image:item.image1,slug:item.slug,id:item._id}];
+            localStorage.setItem('favorite',JSON.stringify(newCarts));
+            toast.success('Thêm thành công.');
+        }
+        else{
+            const checked = carts.some(infor => infor.id.toString() === item._id.toString());
+            if(checked){
+                return toast.error("Bạn đã thêm truyện này rồi.");
+            }
+            else{
+                const newCarts = [...carts,{title:item.title,chapter:item.chapter.length,image:item.image1,slug:item.slug,id:item._id}];
+                localStorage.removeItem('favorite');
+                localStorage.setItem('favorite',JSON.stringify(newCarts));
+                toast.success('Thêm thành công.');
+            }
+        }
+    }
 
   return (
     <div className='card_wrapper'>
@@ -71,7 +93,9 @@ const Card = ({item}) => {
                     }} title='Yêu thích' className='icon_heart'>
                         <i className="fa-regular fa-heart"></i>
                     </div>
-                    <div title='Thêm danh sách yêu thích' className='icon_plus'>
+                    <div 
+                    onClick={handleAddfavoriteCard}
+                    title='Thêm danh sách yêu thích' className='icon_plus'>
                         <i className="fa-regular fa-plus"></i>
                     </div>
                 </div>

@@ -10,7 +10,7 @@ import UpdateMovie from '~/admin/Movies/UpdateMovie';
 import HomePart4 from '~/homePage/HomePart4';
 import '~/moviesDetail/style.css';
 import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
-const Detail = () => {
+const Detail = ({cache}) => {
 
     const heart = useRef();
     const [like,setLike] = useState(false);
@@ -59,14 +59,30 @@ const Detail = () => {
 
     useEffect(() => {
         let here = true;
+        const url = `/product/${slug}`;
+        if(cache.current[url]){
+            setProductDetail(cache.current[url]);
+            if(!kindRef.current){
+                cache.current[url]?.kinds?.forEach((item,index) => {
+                    if(index !== cache.current[url]?.kinds.length - 1){
+                        kindRef.current = kindRef.current +  item?.name + " - ";  
+                    }
+                    else{
+                        kindRef.current = kindRef.current + item?.name;  
+                    }
+                })
+            }
+            return;
+        }
         dispatch(isLoading());
-        axios.get(`/product/${slug}`)
+        axios.get(url)
             .then(res => {
                 if(!here){
                     return dispatch(isSuccess());
                 }
                 dispatch(isSuccess());
                 setProductDetail(res.data.product);
+                cache.current[url] = res.data.product;
                 if(!kindRef.current){
                     res.data.product?.kinds?.forEach((item,index) => {
                         if(index !== res.data.product?.kinds.length - 1){
@@ -120,6 +136,9 @@ const Detail = () => {
 
     useEffect(() => {
         let here = true;
+        if(cache.current['/product/default']){
+            return setProduct(cache.current['/product/default']);
+        }
         dispatch(isLoading());
         axios.get('/product/default')
             .then(res => {
@@ -129,6 +148,7 @@ const Detail = () => {
                 }
                 dispatch(isSuccess());
                 setProduct(res.data);
+                cache.current['/product/default'] = res.data;
             })
             .catch(err => {
                 dispatch(isFailing());

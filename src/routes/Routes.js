@@ -1,5 +1,4 @@
 import Login from "~/admin/Login";
-import CreateMovie from "~/admin/Movies/CreateMovie";
 import Home from "~/homePage/Home";
 import Detail from "~/moviesDetail/Detail";
 import ReadPage from "~/readPage/ReadPage";

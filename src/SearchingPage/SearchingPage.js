@@ -7,7 +7,7 @@ import Paginating from '~/paginating/Paginating';
 import usePaginating from '~/paginating/usePaginating';
 import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
 import '~/SearchingPage/style.css';
-const SearchingPage = () => {
+const SearchingPage = ({cache}) => {
 
     const [kinds,setKinds] = useState([]);
     const [product,setProduct] = useState([]);
@@ -20,6 +20,9 @@ const SearchingPage = () => {
     useEffect(() => {
         let here = true;
         dispatch(isLoading());
+        if(cache.current['/kind']){
+            return setKinds(cache.current['/kind']);
+        }
         axios.get('/kind')
             .then(res => {
                 if(!here){
@@ -28,6 +31,7 @@ const SearchingPage = () => {
                 }
                 dispatch(isSuccess());
                 setKinds(res.data.kind);
+                cache.current['/kind'] = res.data.kind;
             })
             .catch(() => {
                 dispatch(isFailing());
@@ -44,7 +48,9 @@ const SearchingPage = () => {
     useEffect(() => {
         let here = true;
         const url = `/product${search}`;
-        console.log(url)
+        if(cache.current[url]){
+            return setProduct(cache.current[url]);
+        }
         dispatch(isLoading());
         axios.get(url)  
             .then(res =>{
@@ -54,6 +60,7 @@ const SearchingPage = () => {
                 }
                 dispatch(isSuccess());
                 setProduct(res.data);
+                cache.current[url] = res.data;
             })
             .catch(() => {
                 dispatch(isFailing());

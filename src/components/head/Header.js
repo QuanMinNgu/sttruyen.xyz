@@ -12,7 +12,7 @@ const Header = () => {
 
     //declare variable
     const [search,setSearch] = useState('');
-    const [favor,setFavor] = useState('');
+    const [favor,setFavor] = useState([]);
     const [createProduct,setCreateProduct] = useState(false);
     const [createKind,setCreateKind] = useState(false);
     const [result,setResult] = useState([]);
@@ -58,6 +58,18 @@ const Header = () => {
         setResult([]);
     }
 
+    useEffect(() => {
+        const carts = JSON.parse(localStorage.getItem('favorite'));
+        if(!carts){
+            return setFavor([]);
+        }
+        setFavor(carts);
+    },[]);
+
+    const handleDeleteAllFavorite = () => {
+        localStorage.removeItem('favorite');
+        toast.success('Đã xóa toàn bộ truyện yêu thích.');
+    }
 
   return (
     <div className='head-wrapper'>
@@ -130,12 +142,14 @@ const Header = () => {
                                 <i style={{marginRight:"0.3rem"}} class="fa-solid fa-star-and-crescent"></i>
                                 Truyện Yêu Thích
                                 <div className='favorite-detail_container'>
-                                    {favor ? 
+                                    {favor.length > 0 ? 
                                     <div className='favorite-detail_container-having'>
-                                        <FavoriteCard />
-                                        <FavoriteCard />
-                                        <FavoriteCard />
-                                        <div className='favorite-detail_clearAll'>
+                                        {favor?.map(item =>
+                                            <FavoriteCard item={item} key={item?.id + 'cardFavotie'}/>
+                                        )}
+                                        <div 
+                                        onClick={handleDeleteAllFavorite}
+                                        className='favorite-detail_clearAll'>
                                             <span>Xóa Tất Cả</span>
                                         </div>
                                     </div>

@@ -6,7 +6,7 @@ import HomePart4 from './HomePart4';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
-const Home = () => {
+const Home = ({cache}) => {
 
     const [product,setProduct] = useState({});
 
@@ -14,6 +14,10 @@ const Home = () => {
 
     useEffect(() => {
         let here = true;
+        if(cache.current['/product/default']){
+            setProduct(cache.current['/product/default']);
+            return;
+        }
         dispatch(isLoading());
         axios.get('/product/default')
             .then(res => {
@@ -23,6 +27,7 @@ const Home = () => {
                 }
                 dispatch(isSuccess());
                 setProduct(res.data);
+                cache.current['/product/default'] = res.data;
             })
             .catch(err => {
                 dispatch(isFailing());
@@ -40,7 +45,8 @@ const Home = () => {
             <div className='home-container'>
                 <div className='row'>
                     <div className='col c-8 m-8 l-8'>
-                        <HomePart8 products={product?.products} />
+                        <HomePart8
+                        products={product?.products} />
                     </div>
                     <div className='col c-4 m-4 l-4'>
                         <HomePart4 

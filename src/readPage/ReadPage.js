@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
 import './style.css';
 
-const ReadPage = () => {
+const ReadPage = ({cache}) => {
 
     useEffect(() => {
         window.scrollTo(0,0);
@@ -36,8 +36,12 @@ const ReadPage = () => {
 
     useEffect(() => {
         let here = true;
+        const url = `/product/${slug}`;
+        if(cache.current[url]){
+            return setItem(cache.current[url]);
+        }
         dispatch(isLoading());
-        axios.get(`/product/${slug}`)
+        axios.get(url)
             .then(res => {
                 if(!here){
                     dispatch(isSuccess());
@@ -45,6 +49,7 @@ const ReadPage = () => {
                 }
                 dispatch(isSuccess());
                 setItem(res.data.product);
+                cache.current[url] = res.data.product;
             })
             .catch(() => {
                 dispatch(isFailing());
@@ -53,8 +58,6 @@ const ReadPage = () => {
             here = false;
         }
     },[slug]);
-
-    console.log(item)
 
   return (
     <div className='readPage_container'>
@@ -72,7 +75,7 @@ const ReadPage = () => {
                             <span><i style={{marginRight:"0.5rem"}} className="fa-solid fa-user"></i> sttruyen.xyz</span>
                         </div>
                         <div className='readPage_movie_detail-user'>
-                            <span>{item?.chapter && dateFormat(new Date(item?.chapter[chapterNuber * 1 - 1].createdAt))}</span>
+                            <span>{item?.chapter && dateFormat(new Date(item?.chapter[chapterNuber * 1 - 1]?.createdAt))}</span>
                         </div>
                     </div>
                 </div>
