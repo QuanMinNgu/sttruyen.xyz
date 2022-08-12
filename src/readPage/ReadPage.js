@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
 import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
 import './style.css';
+import io from 'socket.io-client';
+import Url from '~/url/Url';
 
 const ReadPage = ({cache}) => {
 
@@ -11,9 +13,12 @@ const ReadPage = ({cache}) => {
         window.scrollTo(0,0);
     },[]);
 
+    const {url} = Url();
+
     const {slug,chapter} = useParams();
     const [item,setItem] =useState({});
     const [chapterNuber,setChapterNumber] = useState(1);
+    const [socket,setSocket] = useState();
 
     const navigate = useNavigate();
 
@@ -58,6 +63,20 @@ const ReadPage = ({cache}) => {
             here = false;
         }
     },[slug]);
+
+    useEffect(() => {
+        const socket = io(url);
+        setSocket(socket);
+        return () => {
+            socket.close();
+        }
+    },[]);
+
+    useEffect(() => {
+        if(socket){
+            
+        }
+    },[socket,chapter,slug]);
 
   return (
     <div className='readPage_container'>

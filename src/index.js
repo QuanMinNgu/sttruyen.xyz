@@ -8,8 +8,9 @@ import {store,persistor} from './redux/store';
 import {Provider} from 'react-redux';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
-
-axios.defaults.baseURL = 'http://localhost:5000';
+import Url from './url/Url';
+const {url} = Url();
+axios.defaults.baseURL = url;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>

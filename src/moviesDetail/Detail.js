@@ -10,9 +10,12 @@ import UpdateMovie from '~/admin/Movies/UpdateMovie';
 import HomePart4 from '~/homePage/HomePart4';
 import '~/moviesDetail/style.css';
 import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
+import io from 'socket.io-client';
+import Url from '~/url/Url';
 const Detail = ({cache}) => {
 
     const heart = useRef();
+    const {url} = Url();
     const [like,setLike] = useState(false);
     const dispatch = useDispatch();
     const [productDetail,setProductDetail] = useState({});
@@ -21,6 +24,7 @@ const Detail = ({cache}) => {
     const [createChapter,setCreateChapter] = useState(false);
     const [updateChapter,setUpdateChapter] = useState(false);
     const [deleteChapter,setDeleteChapter] = useState(false);
+    const [socket,setSocket] = useState();
     const [product,setProduct] = useState({});
 
     const itemRef = useRef({});
@@ -56,6 +60,14 @@ const Detail = ({cache}) => {
             heart.current.innerHTML = '<i class="fa-regular fa-heart"></i>';
         }
     },[like]);
+
+    useEffect(() => {
+        const socket = io(url);
+        setSocket(socket);
+        return () => {
+            socket.close();
+        }
+    },[]);
 
     useEffect(() => {
         let here = true;
