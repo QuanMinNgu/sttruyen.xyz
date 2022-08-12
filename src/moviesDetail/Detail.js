@@ -12,6 +12,7 @@ import '~/moviesDetail/style.css';
 import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
 import io from 'socket.io-client';
 import Url from '~/url/Url';
+import Rating from '~/rating/Rating';
 const Detail = ({cache}) => {
 
     const heart = useRef();
@@ -387,6 +388,7 @@ const Detail = ({cache}) => {
                                 </div>
                             </div>
                         </div>
+                        <Rating />
                     </div>
                 </div>
                 <div className='col c-0 m-4 l-4'>

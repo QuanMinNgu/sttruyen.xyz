@@ -81,7 +81,7 @@ const ReadPage = ({cache}) => {
                 });
 
             }
-        },10000);
+        },100000);
 
         return () => {
             if(timeOutRead){

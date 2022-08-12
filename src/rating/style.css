@@ -1,0 +1,16 @@
+.rating_container{
+    margin-top: 2rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.rating_rap{
+    display: flex;
+}
+.rating_items{
+    margin-right: 0.5rem;
+    font-size: 2rem;
+    color: grey;
+}
+.rating_items.active{
+    color:#ffc107;
+}
