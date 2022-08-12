@@ -30,10 +30,6 @@ const usePaginating = ({count,limit}) => {
         }
     },[page]);
 
-    useEffect(() => {
-        console.log({firstArr,lastArr})
-    },[firstArr,lastArr]);
-
     const prev = () => {
         setPage(Math.max(page - 1,1));
     }

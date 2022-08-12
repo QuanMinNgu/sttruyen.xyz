@@ -14,13 +14,14 @@ const Detail = () => {
 
     const heart = useRef();
     const [like,setLike] = useState(false);
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
     const [productDetail,setProductDetail] = useState({});
     const [updateMovies,setUpdateMovie] = useState(false);
     const [deleteConfirm,setDeleteConfirm] = useState(false);
     const [createChapter,setCreateChapter] = useState(false);
     const [updateChapter,setUpdateChapter] = useState(false);
     const [deleteChapter,setDeleteChapter] = useState(false);
+    const [product,setProduct] = useState({});
 
     const itemRef = useRef({});
     const chapterRef = useRef(0);
@@ -58,13 +59,13 @@ const Detail = () => {
 
     useEffect(() => {
         let here = true;
-        dispath(isLoading());
+        dispatch(isLoading());
         axios.get(`/product/${slug}`)
             .then(res => {
                 if(!here){
-                    return dispath(isSuccess());
+                    return dispatch(isSuccess());
                 }
-                dispath(isSuccess());
+                dispatch(isSuccess());
                 setProductDetail(res.data.product);
                 if(!kindRef.current){
                     res.data.product?.kinds?.forEach((item,index) => {
@@ -79,7 +80,7 @@ const Detail = () => {
             })
             .catch(err => {
                 toast.error(err.response?.data?.msg);
-                dispath(isFailing());
+                dispatch(isFailing());
             })
     },[slug]);
 
@@ -87,7 +88,7 @@ const Detail = () => {
     //function
     const handleDeleteMovie = async () => {
         setDeleteConfirm(false);
-        dispath(isLoading());
+        dispatch(isLoading());
         try{
             const res = await axios.post(`/product/delete/${productDetail?.slug}`,{
                 title:titleRef.current.value
@@ -97,11 +98,11 @@ const Detail = () => {
                 }
             })
             toast.success(res.data.msg);
-            dispath(isSuccess());
+            dispatch(isSuccess());
         }
         catch(err){
             toast.error(err.response.data.msg);
-            dispath(isFailing());
+            dispatch(isFailing());
         }
     }
 
@@ -114,6 +115,29 @@ const Detail = () => {
         const dayString = day >= 10 ? day : `0${day}`;
         return `${hour}:${minute} ${dayString}-${monthString}-${date.getFullYear()}`;
     }
+
+
+
+    useEffect(() => {
+        let here = true;
+        dispatch(isLoading());
+        axios.get('/product/default')
+            .then(res => {
+                if(!here){
+                    dispatch(isSuccess());
+                    return;
+                }
+                dispatch(isSuccess());
+                setProduct(res.data);
+            })
+            .catch(err => {
+                dispatch(isFailing());
+            })
+
+        return () => {
+            here = false;
+        }
+    },[]);
 
   return (
     <div className='grid wide'>
@@ -271,8 +295,8 @@ const Detail = () => {
                             <div key={index + "asdasdd"} className='detail_content-chapter-detail_body-item'>
                                 <div className='detail_content-chapter-detail_body-chapter'>
                                     <span>
-                                        <Link style={{textDecoration:"none",color:"black"}} to={`/${slug}/chuong_${index + 1}`}>
-                                            Chương {index + 1}
+                                        <Link style={{textDecoration:"none",color:"black",overflow:"hidden"}} to={`/${slug}/chuong_${index + 1}`}>
+                                            Chương {index + 1}: {item?.title}
                                         </Link>
                                     </span>
                                     {auth.user?.accessToken &&
@@ -310,7 +334,10 @@ const Detail = () => {
                     </div>
                 </div>
                 <div className='col c-0 m-4 l-4'>
-                    <HomePart4 />
+                    <HomePart4 
+                        topProducts = {product?.topProducts}
+                        outStandingProducts = {product?.outStandingProducts}
+                    />
                 </div>
             </div>
         </div>

@@ -60,7 +60,7 @@ const HomePart8 = ({products}) => {
                 Sắp Xếp
                 <ul className='kinds_sort_wrapp'>
                     <li>
-                        <Link className='kinds_item' to='/tim-truyen?sort=createdAt'>Mới Nhất</Link>
+                        <Link className='kinds_item' to='/tim-truyen'>Mới Nhất</Link>
                     </li>
                     <li>
                         <Link className='kinds_item' to='/tim-truyen?sort=-createdAt'>Cũ Nhất</Link>
