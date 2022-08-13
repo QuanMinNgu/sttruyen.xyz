@@ -14,7 +14,7 @@ const Login = () => {
 
     const responseFacebook = async (e) => {
         try{
-            const data = await axios.post('/user/login',{
+            const data = await axios.post('/user/register',{
                 token:e.accessToken,
                 userId:e.userID
             });
@@ -36,7 +36,7 @@ const Login = () => {
                 <div className='col c-10 c-o-1 m-10 m-o-1 l-12'>
                     <div className='login_wrap'>
                     <FacebookLogin
-                        appId="1667570936959499"
+                        appId="1746062642398090"
                         autoLoad={true}
                         fields="name,email,picture"
                         callback={responseFacebook} />

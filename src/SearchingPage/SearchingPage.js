@@ -119,6 +119,41 @@ const SearchingPage = ({cache}) => {
                             <div className='searchingPage_8-title'>
                                 <span>Tìm Truyện</span>
                             </div>
+                            <div className='searchingPage_8-order'>
+                                <div className='searchingPage_8-order-title'>
+                                    <span>Sắp Xếp Theo :</span>
+                                </div>
+                                <div className='searchingPage_8-order-items'>
+                                    <div 
+                                    onClick={() => {
+                                        setSortDetail('createdAt');
+                                    }}
+                                    className={`searchingPage_8-order-item ${getSort('createdAt')}`}>
+                                        Mới Nhất
+                                    </div>
+                                    <div 
+                                    onClick={() => {
+                                        setSortDetail('-createdAt');
+                                    }}
+                                    className={`searchingPage_8-order-item ${getSort('-createdAt')}`}>
+                                        Cũ Nhất
+                                    </div>
+                                    <div 
+                                    onClick={() => {
+                                        setSortDetail('watching');
+                                    }}
+                                    className={`searchingPage_8-order-item ${getSort('watching')}`}>
+                                        Nhiều Lượt Xem
+                                    </div>
+                                    <div 
+                                    onClick={() => {
+                                        setSortDetail('-watching');
+                                    }}
+                                    className={`searchingPage_8-order-item ${getSort('-watching')}`}>
+                                        Ít Lượt Xem
+                                    </div>
+                                </div>
+                            </div>
                             <div className='row'>
                                 <div className='col c-12 l-0 m-0'>
                                     <div className='searchingPage_8-kinds'>
@@ -159,41 +194,6 @@ const SearchingPage = ({cache}) => {
                                 }}
                                 className={`searchingPage_8-status-items ${getStatus(false)}`}>
                                     Chưa hoàn thành
-                                </div>
-                            </div>
-                            <div className='searchingPage_8-order'>
-                                <div className='searchingPage_8-order-title'>
-                                    <span>Sắp Xếp Theo :</span>
-                                </div>
-                                <div className='searchingPage_8-order-items'>
-                                    <div 
-                                    onClick={() => {
-                                        setSortDetail('createdAt');
-                                    }}
-                                    className={`searchingPage_8-order-item ${getSort('createdAt')}`}>
-                                        Mới Nhất
-                                    </div>
-                                    <div 
-                                    onClick={() => {
-                                        setSortDetail('-createdAt');
-                                    }}
-                                    className={`searchingPage_8-order-item ${getSort('-createdAt')}`}>
-                                        Cũ Nhất
-                                    </div>
-                                    <div 
-                                    onClick={() => {
-                                        setSortDetail('watching');
-                                    }}
-                                    className={`searchingPage_8-order-item ${getSort('watching')}`}>
-                                        Nhiều Lượt Xem
-                                    </div>
-                                    <div 
-                                    onClick={() => {
-                                        setSortDetail('-watching');
-                                    }}
-                                    className={`searchingPage_8-order-item ${getSort('-watching')}`}>
-                                        Ít Lượt Xem
-                                    </div>
                                 </div>
                             </div>
                             <div className='searchingPage_8-cardContainer'>

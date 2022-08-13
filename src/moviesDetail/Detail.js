@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CreateChapter from '~/admin/chapters/CreateChapter';
 import DeleteChapter from '~/admin/chapters/DeleteChapter';
@@ -13,6 +13,7 @@ import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
 import io from 'socket.io-client';
 import Url from '~/url/Url';
 import Rating from '~/rating/Rating';
+import Comment from '~/comment/Comment';
 const Detail = ({cache}) => {
 
     const heart = useRef();
@@ -27,6 +28,7 @@ const Detail = ({cache}) => {
     const [deleteChapter,setDeleteChapter] = useState(false);
     const [socket,setSocket] = useState();
     const [product,setProduct] = useState({});
+
 
     const itemRef = useRef({});
     const chapterRef = useRef(0);
@@ -389,6 +391,7 @@ const Detail = ({cache}) => {
                             </div>
                         </div>
                         <Rating />
+                        <Comment />
                     </div>
                 </div>
                 <div className='col c-0 m-4 l-4'>

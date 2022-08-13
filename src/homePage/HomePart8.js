@@ -7,7 +7,7 @@ import Card from '~/card/Card';
 import { useDispatch } from 'react-redux';
 import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
 import axios from 'axios';
-const HomePart8 = ({products}) => {
+const HomePart8 = ({products,cache}) => {
 
     const [kinds,setKinds] = useState([]);
     const [product,setProduct] = useState([]);
@@ -20,6 +20,9 @@ const HomePart8 = ({products}) => {
     },[products]);
 
     useEffect(() => {
+        if(cache.current['/kind']){
+            return setKinds(cache.current['/kind']);
+        }
         let here = true;
         dispatch(isLoading());
         axios.get('/kind')
@@ -30,6 +33,7 @@ const HomePart8 = ({products}) => {
                 }
                 dispatch(isSuccess());
                 setKinds(res.data.kind);
+                cache.current['/kind'] = res.data.kind;
             })
             .catch(() => {
                 dispatch(isFailing());

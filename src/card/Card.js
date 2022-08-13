@@ -74,10 +74,12 @@ const Card = ({item}) => {
 
     useEffect(() => {
         const likeCarts = JSON.parse(localStorage.getItem('likes'));
-        const checked = likeCarts.some(infor => infor.toString() === item._id.toString());
-        if(checked){
-            setLike(true);
-            likeRef.current = true;
+        if(likeCarts){
+            const checked = likeCarts.some(infor => infor.toString() === item._id.toString());
+            if(checked){
+                setLike(true);
+                likeRef.current = true;
+            }
         }
     },[]);
 

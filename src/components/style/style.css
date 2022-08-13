@@ -17,7 +17,6 @@
 .brand-wrapper{
     width: 100%;
     height: 10rem;
-    margin-left: 2rem;
 }
 .brand-link-wrapper{
     width: 100%;
@@ -281,10 +280,42 @@
     transform: scale(1.1);
 }
 .footer-container{
-    height: 20rem;
-    border-top: 1rem solid rgba(0,0,0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-height: 15rem;
+    background-color: rgb(32,42,53);
     font-size: 4rem;
+    margin-top: 4rem;
+    padding:1rem;
+}
+.footer-title{
+    width: 100%;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    color:white;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+@media only screen and (max-width:539px){
+    .footer-title{
+        font-size: 1.5rem;
+    }
+}
+.footer-address{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color:white;
+    font-size: 1.7rem;
+    margin-top: 2rem;
+}
+.footer-email-facebook{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color:white;
+    font-size: 1.7rem;
+    margin-top: 2rem;
+}
+.footer-email-facebook > span{
+    margin-left: 2rem;
 }

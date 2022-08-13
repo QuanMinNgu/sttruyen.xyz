@@ -45,7 +45,7 @@ const Home = ({cache}) => {
             <div className='home-container'>
                 <div className='row'>
                     <div className='col c-8 m-8 l-8'>
-                        <HomePart8
+                        <HomePart8 cache={cache}
                         products={product?.products} />
                     </div>
                     <div className='col c-4 m-4 l-4'>

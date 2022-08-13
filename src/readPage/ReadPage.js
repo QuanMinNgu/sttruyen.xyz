@@ -6,6 +6,7 @@ import { isFailing, isLoading, isSuccess } from '~/redux/slice/auth';
 import './style.css';
 import io from 'socket.io-client';
 import Url from '~/url/Url';
+import Comment from '~/comment/Comment';
 
 const ReadPage = ({cache}) => {
 
@@ -151,6 +152,7 @@ const ReadPage = ({cache}) => {
                             <i style={{marginRight:"0.5rem"}} className="fa-solid fa-comment"></i> Bình luận
                         </div>
                     </div>
+                    <Comment />
                 </div>
             </div>
         </div>
