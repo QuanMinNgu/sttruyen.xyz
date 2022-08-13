@@ -1,7 +1,7 @@
 
 const Url = () => {
-    //const url = 'https://sttruyen-xyzbackend.vercel.app/';
-    const url = 'http://localhost:5000';
+    const url = 'https://sttruyen-xyzbackend.vercel.app/';
+    //const url = 'http://localhost:5000';
   return {url}
 }
 

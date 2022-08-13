@@ -14,6 +14,7 @@ import io from 'socket.io-client';
 import Url from '~/url/Url';
 import Rating from '~/rating/Rating';
 import Comment from '~/comment/Comment';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 const Detail = ({cache}) => {
 
     const heart = useRef();
@@ -198,6 +199,13 @@ const Detail = ({cache}) => {
 
   return (
     <div className='grid wide'>
+        <HelmetProvider>
+            <Helmet>
+                <title>{productDetail?.title || "Truyện Tranh Hay"}</title>
+                <link rel="canonical" href={`https://sttruyen.xyz/${slug}`}/>
+                <meta content={productDetail?.content || "Sttruyen là web đọc truyện mọi thể loại, truyện hay mà bạn không thể tìn thấy ở bất cứ nơi nào khác."} />
+            </Helmet>
+        </HelmetProvider>
         <div className='detail_wrapp'>
             <div className='row'>
                 <div className='c-12 m-8 l-8'>

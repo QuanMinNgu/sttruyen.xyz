@@ -7,6 +7,7 @@ import './style.css';
 import io from 'socket.io-client';
 import Url from '~/url/Url';
 import Comment from '~/comment/Comment';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const ReadPage = ({cache}) => {
 
@@ -93,6 +94,13 @@ const ReadPage = ({cache}) => {
 
   return (
     <div className='readPage_container'>
+        <HelmetProvider>
+            <Helmet>
+                <title>{`${item?.title} chương ${chapterNuber}` || "Truyện Tranh Hay"}</title>
+                <link rel="canonical" href={`https://sttruyen.xyz/${slug}/${chapter}`}/>
+                <meta content={item?.content || "Sttruyen là web đọc truyện mọi thể loại, truyện hay mà bạn không thể tìn thấy ở bất cứ nơi nào khác."} />
+            </Helmet>
+        </HelmetProvider>
         <div className='grid wide'>
             <div className='readPage_wrap'>
                 <div className='readPage_movie_detail-border'>
