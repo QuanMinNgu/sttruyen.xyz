@@ -1,8 +1,7 @@
-
 const Url = () => {
-    const url = 'https://sttruyen-xyzbackend.vercel.app/';
+    const url = "https://sttruyen-backend.onrender.com/";
     //const url = 'http://localhost:5000';
-  return {url}
-}
+    return { url };
+};
 
-export default Url
+export default Url;

@@ -21,9 +21,7 @@ const Home = ({cache}) => {
             return;
         }
         dispatch(isLoading());
-        axios.get('/product/default',{
-            headers: {"Access-Control-Allow-Origin": "*"}
-        })
+        axios.get('/product/default')
             .then(res => {
                 if(!here){
                     dispatch(isSuccess());

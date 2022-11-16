@@ -14,7 +14,7 @@ const Login = () => {
 
     const responseFacebook = async (e) => {
         try{
-            const data = await axios.post('/user/register',{
+            const data = await axios.post('/user/login',{
                 token:e.accessToken,
                 userId:e.userID
             });

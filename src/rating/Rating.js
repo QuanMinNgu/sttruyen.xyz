@@ -34,7 +34,7 @@ const Rating = () => {
     },[slug]);
 
     useEffect(() => {
-        if(rateTimes.current > 2){
+        if(rateTimes.current > 1){
             var ratingCarts = JSON.parse(localStorage.getItem('ratings'));
             if(ratingCarts){
                 const checked = ratingCarts?.some(infor => infor.slug.toString() === slug.toString());
@@ -75,7 +75,7 @@ const Rating = () => {
     },[]);
 
     useEffect(() => {
-        if(rateTimes.current > 2){
+        if(rateTimes.current > 1){
             if(checkRef.current === true){
                 socket.emit("Rating",{
                     slug,

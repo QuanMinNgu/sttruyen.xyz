@@ -119,6 +119,29 @@ const SearchingPage = ({cache}) => {
                             <div className='searchingPage_8-title'>
                                 <span>Tìm Truyện</span>
                             </div>
+                            <div className='searchingPage_8-status'>
+                                <div 
+                                onClick={() => {
+                                    setStatusCard('');
+                                }}
+                                className={`searchingPage_8-status-items ${getStatus('')}`}>
+                                    Tất cả
+                                </div>
+                                <div
+                                onClick={() => {
+                                    setStatusCard(true);
+                                }}
+                                 className={`searchingPage_8-status-items ${getStatus(true)}`}>
+                                    Hoàn thành
+                                </div>
+                                <div 
+                                onClick={() => {
+                                    setStatusCard(false);
+                                }}
+                                className={`searchingPage_8-status-items ${getStatus(false)}`}>
+                                    Chưa hoàn thành
+                                </div>
+                            </div>
                             <div className='searchingPage_8-order'>
                                 <div className='searchingPage_8-order-title'>
                                     <span>Sắp Xếp Theo :</span>
@@ -171,29 +194,6 @@ const SearchingPage = ({cache}) => {
                                             )}
                                         </select>
                                     </div>
-                                </div>
-                            </div>
-                            <div className='searchingPage_8-status'>
-                                <div 
-                                onClick={() => {
-                                    setStatusCard('');
-                                }}
-                                className={`searchingPage_8-status-items ${getStatus('')}`}>
-                                    Tất cả
-                                </div>
-                                <div
-                                onClick={() => {
-                                    setStatusCard(true);
-                                }}
-                                 className={`searchingPage_8-status-items ${getStatus(true)}`}>
-                                    Hoàn thành
-                                </div>
-                                <div 
-                                onClick={() => {
-                                    setStatusCard(false);
-                                }}
-                                className={`searchingPage_8-status-items ${getStatus(false)}`}>
-                                    Chưa hoàn thành
                                 </div>
                             </div>
                             <div className='searchingPage_8-cardContainer'>
